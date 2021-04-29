@@ -31,7 +31,7 @@ public class Api {
 				response.append(inputLine);
 			}
 			in.close();
-			System.out.println("테스트 1: " + response.toString());
+			//System.out.println("테스트 1: " + response.toString());
 			JSONObject myResponse = new JSONObject(response.toString());
 			JSONArray jArray = myResponse.getJSONArray("rows");
 			
@@ -92,18 +92,18 @@ public class Api {
 //				response.append(inputLine);
 //			}
 //			in.close();
-//			System.out.println("테스트 1: " + response.toString());
+//			//System.out.println("테스트 1: " + response.toString());
 //			JSONObject myResponse = new JSONObject(response.toString());
 //			
 //			JSONArray test = myResponse.getJSONObject("timeline").getJSONArray("rows");
-//			System.out.println("테스트 2:" + test.toString());
+//			//System.out.println("테스트 2:" + test.toString());
 //
 //			
 //			String parseitemName2 = test.getJSONObject(0).getString("name");
 //			int tl = test.length();
 //			
 //			
-//			System.out.println("테스트 3 : " + parseitemName2);
+//			//System.out.println("테스트 3 : " + parseitemName2);
 //
 //			return new String[] {parseitemName2};
 //		} catch (Exception e) {
@@ -118,7 +118,8 @@ public class Api {
 		try {
 			String serverId = reserverId;
 			String characterId = recharacterId;
-			String htmlUrl = "https://api.neople.co.kr/df/servers/"+serverId+"/characters/"+characterId+"/timeline?limit=100&code=505,513&apikey=oMDk2YvEtfIzJG8SfXLWDZ3km3J1pKu6";
+			String htmlUrl = "https://api.neople.co.kr/df/servers/"+serverId+"/characters/"+characterId+"/timeline?limit=100&code=505,504,513&apikey=oMDk2YvEtfIzJG8SfXLWDZ3km3J1pKu6";
+			String htmlUrltest = "https://api.neople.co.kr/df/servers/prey/characters/aff735f07862974f704f0543f8e7270a/timeline?limit=100&code=505,504,513&apikey=oMDk2YvEtfIzJG8SfXLWDZ3km3J1pKu6";
 			HttpURLConnection conn = (HttpURLConnection) new URL(htmlUrl).openConnection();
 			conn.setRequestMethod("GET");
 			
@@ -129,24 +130,24 @@ public class Api {
 				response.append(inputLine);
 			}
 			in.close();
-			System.out.println("테스트 1: " + response.toString());
+			//System.out.println("테스트 1: " + response.toString());
 			JSONObject myResponse = new JSONObject(response.toString());
 			
 			JSONArray test = myResponse.getJSONObject("timeline").getJSONArray("rows");
-			System.out.println("테스트 2:" + test.toString());
+			//System.out.println("테스트 2:" + test.toString());
 			
 			String parseitemName2 = test.getJSONObject(0).getString("name");
 			tl = test.length();
 			
 			
-			System.out.println("테스트 3 : " + parseitemName2);
+			//System.out.println("테스트 3 : " + parseitemName2);
 		} catch (Exception e) {
 			
 		}
 //		try {
 //			String serverId = reserverId;
 //			String characterId = recharacterId;
-//			String htmlUrl = "https://api.neople.co.kr/df/servers/"+serverId+"/characters/"+characterId+"/timeline?limit=100&code=505,513&startDate=20200601T0000&endDate=20200830T2359&apikey=oMDk2YvEtfIzJG8SfXLWDZ3km3J1pKu6";
+//			String htmlUrl = "https://api.neople.co.kr/df/servers/"+serverId+"/characters/"+characterId+"/timeline?limit=100&code=505,504,513&startDate=20200601T0000&endDate=20200830T2359&apikey=oMDk2YvEtfIzJG8SfXLWDZ3km3J1pKu6";
 //			HttpURLConnection conn = (HttpURLConnection) new URL(htmlUrl).openConnection();
 //			conn.setRequestMethod("GET");
 //			
@@ -158,15 +159,15 @@ public class Api {
 //			}
 //			in.close();
 //			conn.disconnect();
-//			System.out.println("테스트 1: " + response.toString());
+//			//System.out.println("테스트 1: " + response.toString());
 //			JSONObject myResponse = new JSONObject(response.toString());
 //			
 //			JSONArray test = myResponse.getJSONObject("timeline").getJSONArray("rows");
-//			System.out.println("테스트 2:" + test.toString());
+//			//System.out.println("테스트 2:" + test.toString());
 //			String parseitemName2 = test.getJSONObject(0).getString("name");
 //			tl2 = test.length();
 //			
-//			System.out.println("테스트 3 : " + parseitemName2);
+//			//System.out.println("테스트 3 : " + parseitemName2);
 //			
 //			
 //			
@@ -177,7 +178,7 @@ public class Api {
 //		try {
 //			String serverId = reserverId;
 //			String characterId = recharacterId;
-//			String htmlUrl = "https://api.neople.co.kr/df/servers/"+serverId+"/characters/"+characterId+"/timeline?limit=100&code=505,513&startDate=20200831T0000&endDate=20201129T2359&apikey=oMDk2YvEtfIzJG8SfXLWDZ3km3J1pKu6";
+//			String htmlUrl = "https://api.neople.co.kr/df/servers/"+serverId+"/characters/"+characterId+"/timeline?limit=100&code=505,504,513&startDate=20200831T0000&endDate=20201129T2359&apikey=oMDk2YvEtfIzJG8SfXLWDZ3km3J1pKu6";
 //			HttpURLConnection conn = (HttpURLConnection) new URL(htmlUrl).openConnection();
 //			conn.setRequestMethod("GET");
 //			
@@ -189,17 +190,17 @@ public class Api {
 //			}
 //			in.close();
 //			conn.disconnect();
-//			System.out.println("테스트 1: " + response.toString());
+//			//System.out.println("테스트 1: " + response.toString());
 //			JSONObject myResponse = new JSONObject(response.toString());
 //			
 //			JSONArray test = myResponse.getJSONObject("timeline").getJSONArray("rows");
-//			System.out.println("테스트 2:" + test.toString());
+//			//System.out.println("테스트 2:" + test.toString());
 //			
 //			String parseitemName2 = test.getJSONObject(0).getString("name");
 //			tl3 = test.length();
 //			
 //			
-//			System.out.println("테스트 3 : " + parseitemName2);
+//			//System.out.println("테스트 3 : " + parseitemName2);
 //		} catch (Exception e) {
 //			
 //		}
@@ -207,7 +208,7 @@ public class Api {
 //		try {
 //			String serverId = reserverId;
 //			String characterId = recharacterId;
-//			String htmlUrl = "https://api.neople.co.kr/df/servers/"+serverId+"/characters/"+characterId+"/timeline?limit=100&code=505,513&startDate=20201130T0000&endDate=20210228T2359&apikey=oMDk2YvEtfIzJG8SfXLWDZ3km3J1pKu6";
+//			String htmlUrl = "https://api.neople.co.kr/df/servers/"+serverId+"/characters/"+characterId+"/timeline?limit=100&code=505,504,513&startDate=20201130T0000&endDate=20210228T2359&apikey=oMDk2YvEtfIzJG8SfXLWDZ3km3J1pKu6";
 //			HttpURLConnection conn = (HttpURLConnection) new URL(htmlUrl).openConnection();
 //			conn.setRequestMethod("GET");
 //			
@@ -219,17 +220,17 @@ public class Api {
 //			}
 //			in.close();
 //			conn.disconnect();
-//			System.out.println("테스트 1: " + response.toString());
+//			//System.out.println("테스트 1: " + response.toString());
 //			JSONObject myResponse = new JSONObject(response.toString());
 //			
 //			JSONArray test = myResponse.getJSONObject("timeline").getJSONArray("rows");
-//			System.out.println("테스트 2:" + test.toString());
+//			//System.out.println("테스트 2:" + test.toString());
 //			
 //			String parseitemName2 = test.getJSONObject(0).getString("name");
 //			tl4 = test.length();
 //			
 //			
-//			System.out.println("테스트 3 : " + parseitemName2);
+//			//System.out.println("테스트 3 : " + parseitemName2);
 //		} catch (Exception e) {
 //			
 //		}
@@ -237,7 +238,7 @@ public class Api {
 //		try {
 //			String serverId = reserverId;
 //			String characterId = recharacterId;
-//			String htmlUrl = "https://api.neople.co.kr/df/servers/"+serverId+"/characters/"+characterId+"/timeline?limit=100&code=505,513&startDate=20210301T0000&endDate=20210427T2359&apikey=oMDk2YvEtfIzJG8SfXLWDZ3km3J1pKu6";
+//			String htmlUrl = "https://api.neople.co.kr/df/servers/"+serverId+"/characters/"+characterId+"/timeline?limit=100&code=505,504,513&startDate=20210301T0000&endDate=20210427T2359&apikey=oMDk2YvEtfIzJG8SfXLWDZ3km3J1pKu6";
 //			HttpURLConnection conn = (HttpURLConnection) new URL(htmlUrl).openConnection();
 //			conn.setRequestMethod("GET");
 //			
@@ -249,16 +250,16 @@ public class Api {
 //			}
 //			in.close();
 //			conn.disconnect();
-//			System.out.println("테스트 1: " + response.toString());
+//			//System.out.println("테스트 1: " + response.toString());
 //			JSONObject myResponse = new JSONObject(response.toString());
 //			
 //			JSONArray test = myResponse.getJSONObject("timeline").getJSONArray("rows");
-//			System.out.println("테스트 2:" + test.toString());
+//			//System.out.println("테스트 2:" + test.toString());
 //			String parseitemName2 = test.getJSONObject(0).getString("name");
 //			tl5 = test.length();
 //			
 //			
-//			System.out.println("테스트 3 : " + parseitemName2);
+//			//System.out.println("테스트 3 : " + parseitemName2);
 //		} catch (Exception e) {
 //			
 //		}
@@ -273,7 +274,8 @@ public class Api {
 		try {
 			String serverId = reserverId;
 			String characterId = recharacterId;
-			String htmlUrl = "https://api.neople.co.kr/df/servers/"+serverId+"/characters/"+characterId+"/timeline?limit=100&code=505,513&startDate=20200601T0000&endDate=20200830T2359&apikey=oMDk2YvEtfIzJG8SfXLWDZ3km3J1pKu6";
+			String htmlUrl = "https://api.neople.co.kr/df/servers/"+serverId+"/characters/"+characterId+"/timeline?limit=100&code=505,504,513&startDate=20200601T0000&endDate=20200830T2359&apikey=oMDk2YvEtfIzJG8SfXLWDZ3km3J1pKu6";
+			
 			HttpURLConnection conn = (HttpURLConnection) new URL(htmlUrl).openConnection();
 			conn.setRequestMethod("GET");
 			
@@ -284,15 +286,15 @@ public class Api {
 				response.append(inputLine);
 			}
 			in.close();
-			System.out.println("테스트 1: " + response.toString());
+			//System.out.println("테스트 1: " + response.toString());
 			JSONObject myResponse = new JSONObject(response.toString());
 			
 			JSONArray test = myResponse.getJSONObject("timeline").getJSONArray("rows");
-			System.out.println("테스트 2:" + test.toString());
+			//System.out.println("테스트 2:" + test.toString());
 			String parseitemName2 = test.getJSONObject(0).getString("name");
 			tl2 = test.length();
-			
-			System.out.println("테스트 3 : " + parseitemName2);	
+			System.out.println(tl2);
+			//System.out.println("테스트 3 : " + parseitemName2);	
 			
 		} catch (Exception e) {
 			
@@ -310,7 +312,8 @@ public class Api {
 		try {
 			String serverId = reserverId;
 			String characterId = recharacterId;
-			String htmlUrl = "https://api.neople.co.kr/df/servers/"+serverId+"/characters/"+characterId+"/timeline?limit=100&code=505,513&startDate=20200831T0000&endDate=20201129T2359&apikey=oMDk2YvEtfIzJG8SfXLWDZ3km3J1pKu6";
+			String htmlUrl = "https://api.neople.co.kr/df/servers/"+serverId+"/characters/"+characterId+"/timeline?limit=100&code=505,504,513&startDate=20200831T0000&endDate=20201129T2359&apikey=oMDk2YvEtfIzJG8SfXLWDZ3km3J1pKu6";
+			String htmlUrltest = "https://api.neople.co.kr/df/servers/prey/characters/aff735f07862974f704f0543f8e7270atimeline?limit=100&code=505,504,513&startDate=20200831T0000&endDate=20201129T2359&apikey=oMDk2YvEtfIzJG8SfXLWDZ3km3J1pKu6";
 			HttpURLConnection conn = (HttpURLConnection) new URL(htmlUrl).openConnection();
 			conn.setRequestMethod("GET");
 			
@@ -321,15 +324,15 @@ public class Api {
 				response.append(inputLine);
 			}
 			in.close();
-			System.out.println("테스트 1: " + response.toString());
+			//System.out.println("테스트 1: " + response.toString());
 			JSONObject myResponse = new JSONObject(response.toString());
 			
 			JSONArray test = myResponse.getJSONObject("timeline").getJSONArray("rows");
-			System.out.println("테스트 2:" + test.toString());
+			//System.out.println("테스트 2:" + test.toString());
 			String parseitemName2 = test.getJSONObject(0).getString("name");
 			tl3 = test.length();
-			
-			System.out.println("테스트 3 : " + parseitemName2);	
+			System.out.println(tl3);
+			//System.out.println("테스트 3 : " + parseitemName2);	
 			
 		} catch (Exception e) {
 			
@@ -345,7 +348,8 @@ public class Api {
 		try {
 			String serverId = reserverId;
 			String characterId = recharacterId;
-			String htmlUrl = "https://api.neople.co.kr/df/servers/"+serverId+"/characters/"+characterId+"/timeline?limit=100&code=505,513&startDate=20201130T0000&endDate=20210228T2359&apikey=oMDk2YvEtfIzJG8SfXLWDZ3km3J1pKu6";
+			String htmlUrl = "https://api.neople.co.kr/df/servers/"+serverId+"/characters/"+characterId+"/timeline?limit=100&code=505,504,513&startDate=20201130T0000&endDate=20210228T2359&apikey=oMDk2YvEtfIzJG8SfXLWDZ3km3J1pKu6";
+			String htmlUrltest = "https://api.neople.co.kr/df/servers/prey/characters/aff735f07862974f704f0543f8e7270a/timeline?limit=100&code=505,504,513&startDate=20201130T0000&endDate=20210228T2359&apikey=oMDk2YvEtfIzJG8SfXLWDZ3km3J1pKu6";
 			HttpURLConnection conn = (HttpURLConnection) new URL(htmlUrl).openConnection();
 			conn.setRequestMethod("GET");
 			
@@ -356,15 +360,15 @@ public class Api {
 				response.append(inputLine);
 			}
 			in.close();
-			System.out.println("테스트 1: " + response.toString());
+			//System.out.println("테스트 1: " + response.toString());
 			JSONObject myResponse = new JSONObject(response.toString());
 			
 			JSONArray test = myResponse.getJSONObject("timeline").getJSONArray("rows");
-			System.out.println("테스트 2:" + test.toString());
+			//System.out.println("테스트 2:" + test.toString());
 			String parseitemName2 = test.getJSONObject(0).getString("name");
 			tl4 = test.length();
-			
-			System.out.println("테스트 3 : " + parseitemName2);	
+			System.out.println(tl4);
+			//System.out.println("테스트 3 : " + parseitemName2);	
 			
 		} catch (Exception e) {
 			
@@ -379,7 +383,7 @@ public class Api {
 		try {
 			String serverId = reserverId;
 			String characterId = recharacterId;
-			String htmlUrl = "https://api.neople.co.kr/df/servers/"+serverId+"/characters/"+characterId+"/timeline?limit=100&code=505,513&startDate=20210301T0000&endDate=20210427T2359&apikey=oMDk2YvEtfIzJG8SfXLWDZ3km3J1pKu6";
+			String htmlUrl = "https://api.neople.co.kr/df/servers/"+serverId+"/characters/"+characterId+"/timeline?limit=100&code=505,504,513&startDate=20210301T0000&endDate=20210427T2359&apikey=oMDk2YvEtfIzJG8SfXLWDZ3km3J1pKu6";
 			HttpURLConnection conn = (HttpURLConnection) new URL(htmlUrl).openConnection();
 			conn.setRequestMethod("GET");
 			
@@ -390,15 +394,15 @@ public class Api {
 				response.append(inputLine);
 			}
 			in.close();
-			System.out.println("테스트 1: " + response.toString());
+			//System.out.println("테스트 1: " + response.toString());
 			JSONObject myResponse = new JSONObject(response.toString());
 			
 			JSONArray test = myResponse.getJSONObject("timeline").getJSONArray("rows");
-			System.out.println("테스트 2:" + test.toString());
-			String parseitemName2 = test.getJSONObject(0).getString("name");
+			//System.out.println("테스트 2:" + test.toString());
+			//String parseitemName2 = test.getJSONObject(0).getString("name");
 			tl5 = test.length();
-			
-			System.out.println("테스트 3 : " + parseitemName2);	
+			//System.out.println(tl5);
+			//System.out.println("테스트 3 : " + parseitemName2);	
 			
 		} catch (Exception e) {
 			
@@ -406,4 +410,6 @@ public class Api {
 		
 		return tl5;
 	}
+	
+
 }

@@ -117,22 +117,42 @@ public class DnfController {
 	@RequestMapping("dnftest2")
 	public String dnftest2(HttpServletRequest request, Model model) {
 
-		model.addAttribute("testtest", api.searchId(request.getParameter("server"), request.getParameter("id")));
+		//model.addAttribute("testtest", api.searchId(request.getParameter("server"), request.getParameter("id")));
+		model.addAttribute("testtest", api.searchId("prey", "체이서배메"));
 		model.addAttribute("testtest2", api.searchId("prey", "닷지닷지닷지"));
 		model.addAttribute("testtest3", api.searchId("prey", "조지조지조지"));
 		model.addAttribute("testtest4", api.searchId("prey", "중화기따위"));
 		model.addAttribute("testtest5", api.searchId("prey", "채찍질앗흥♥"));
 		model.addAttribute("testtest6", api.searchId("prey", "극한의경지"));
 		//model.addAttribute("timeline", api.searchTimeline("prey", "e1e49bd4a4e8f9b3a3f7022f1460bd99"));
-		model.addAttribute("timeline", api.searchTimeline("prey", "aff735f07862974f704f0543f8e7270a")+api.searchTimeline2("prey", "aff735f07862974f704f0543f8e7270a")+api.searchTimeline3("prey", "aff735f07862974f704f0543f8e7270a")+api.searchTimeline4("prey", "aff735f07862974f704f0543f8e7270a")+api.searchTimeline5("prey", "aff735f07862974f704f0543f8e7270a"));
-		model.addAttribute("timeline2", api.searchTimeline("prey", "4caff656a4cd3c1cb174376bbe66a46e")+api.searchTimeline2("prey", "4caff656a4cd3c1cb174376bbe66a46e")+api.searchTimeline3("prey", "4caff656a4cd3c1cb174376bbe66a46e")+api.searchTimeline4("prey", "4caff656a4cd3c1cb174376bbe66a46e")+api.searchTimeline5("prey", "4caff656a4cd3c1cb174376bbe66a46e"));
-		model.addAttribute("timeline3", api.searchTimeline("prey", "9a354d1188ffbf722f29cccbb7a1c81c")+api.searchTimeline2("prey", "9a354d1188ffbf722f29cccbb7a1c81c")+api.searchTimeline3("prey", "9a354d1188ffbf722f29cccbb7a1c81c")+api.searchTimeline4("prey", "9a354d1188ffbf722f29cccbb7a1c81c")+api.searchTimeline5("prey", "9a354d1188ffbf722f29cccbb7a1c81c"));
-		model.addAttribute("timeline4", api.searchTimeline("prey", "5943d489ee7c1f86482fbeb413b00f44")+api.searchTimeline2("prey", "5943d489ee7c1f86482fbeb413b00f44")+api.searchTimeline3("prey", "5943d489ee7c1f86482fbeb413b00f44")+api.searchTimeline4("prey", "5943d489ee7c1f86482fbeb413b00f44")+api.searchTimeline5("prey", "5943d489ee7c1f86482fbeb413b00f44"));
-		model.addAttribute("timeline5", api.searchTimeline("prey", "fc345216453277fe110a6df4113a8a83")+api.searchTimeline2("prey", "fc345216453277fe110a6df4113a8a83")+api.searchTimeline3("prey", "fc345216453277fe110a6df4113a8a83")+api.searchTimeline4("prey", "fc345216453277fe110a6df4113a8a83")+api.searchTimeline5("prey", "fc345216453277fe110a6df4113a8a83"));
-		model.addAttribute("timeline6", api.searchTimeline("prey", "44d23031895e97b03ba3625149c98fb5")+api.searchTimeline2("prey", "44d23031895e97b03ba3625149c98fb5")+api.searchTimeline3("prey", "44d23031895e97b03ba3625149c98fb5")+api.searchTimeline4("prey", "44d23031895e97b03ba3625149c98fb5")+api.searchTimeline5("prey", "44d23031895e97b03ba3625149c98fb5"));
+		model.addAttribute("timeline", api.searchTimeline2("prey", "aff735f07862974f704f0543f8e7270a")+api.searchTimeline3("prey", "aff735f07862974f704f0543f8e7270a")+api.searchTimeline4("prey", "aff735f07862974f704f0543f8e7270a")+api.searchTimeline5("prey", "aff735f07862974f704f0543f8e7270a"));
+		model.addAttribute("timeline2", api.searchTimeline2("prey", "4caff656a4cd3c1cb174376bbe66a46e")+api.searchTimeline3("prey", "4caff656a4cd3c1cb174376bbe66a46e")+api.searchTimeline4("prey", "4caff656a4cd3c1cb174376bbe66a46e")+api.searchTimeline5("prey", "4caff656a4cd3c1cb174376bbe66a46e"));
+		model.addAttribute("timeline3", api.searchTimeline2("prey", "9a354d1188ffbf722f29cccbb7a1c81c")+api.searchTimeline3("prey", "9a354d1188ffbf722f29cccbb7a1c81c")+api.searchTimeline4("prey", "9a354d1188ffbf722f29cccbb7a1c81c")+api.searchTimeline5("prey", "9a354d1188ffbf722f29cccbb7a1c81c"));
+		model.addAttribute("timeline4", api.searchTimeline2("prey", "5943d489ee7c1f86482fbeb413b00f44")+api.searchTimeline3("prey", "5943d489ee7c1f86482fbeb413b00f44")+api.searchTimeline4("prey", "5943d489ee7c1f86482fbeb413b00f44")+api.searchTimeline5("prey", "5943d489ee7c1f86482fbeb413b00f44"));
+		model.addAttribute("timeline5", api.searchTimeline2("prey", "fc345216453277fe110a6df4113a8a83")+api.searchTimeline3("prey", "fc345216453277fe110a6df4113a8a83")+api.searchTimeline4("prey", "fc345216453277fe110a6df4113a8a83")+api.searchTimeline5("prey", "fc345216453277fe110a6df4113a8a83"));
+		model.addAttribute("timeline6", api.searchTimeline2("prey", "44d23031895e97b03ba3625149c98fb5")+api.searchTimeline3("prey", "44d23031895e97b03ba3625149c98fb5")+api.searchTimeline4("prey", "44d23031895e97b03ba3625149c98fb5")+api.searchTimeline5("prey", "44d23031895e97b03ba3625149c98fb5"));
 		return "dnftest2";
 	}
 
+	@RequestMapping("dnftestrank")
+	public String dnftestrank(HttpServletRequest request, Model model) {
+
+		//model.addAttribute("testtest", api.searchId(request.getParameter("server"), request.getParameter("id")));
+		model.addAttribute("testtest", api.searchId("prey", "체이서배메"));
+		model.addAttribute("testtest2", api.searchId("prey", "닷지닷지닷지"));
+		model.addAttribute("testtest3", api.searchId("prey", "조지조지조지"));
+		model.addAttribute("testtest4", api.searchId("prey", "중화기따위"));
+		model.addAttribute("testtest5", api.searchId("prey", "채찍질앗흥♥"));
+		model.addAttribute("testtest6", api.searchId("prey", "극한의경지"));
+		//model.addAttribute("timeline", api.searchTimeline("prey", "e1e49bd4a4e8f9b3a3f7022f1460bd99"));
+		model.addAttribute("timeline", api.searchTimeline2("prey", "aff735f07862974f704f0543f8e7270a")+api.searchTimeline3("prey", "aff735f07862974f704f0543f8e7270a")+api.searchTimeline4("prey", "aff735f07862974f704f0543f8e7270a")+api.searchTimeline5("prey", "aff735f07862974f704f0543f8e7270a"));
+		model.addAttribute("timeline2", api.searchTimeline2("prey", "4caff656a4cd3c1cb174376bbe66a46e")+api.searchTimeline3("prey", "4caff656a4cd3c1cb174376bbe66a46e")+api.searchTimeline4("prey", "4caff656a4cd3c1cb174376bbe66a46e")+api.searchTimeline5("prey", "4caff656a4cd3c1cb174376bbe66a46e"));
+		model.addAttribute("timeline3", api.searchTimeline2("prey", "9a354d1188ffbf722f29cccbb7a1c81c")+api.searchTimeline3("prey", "9a354d1188ffbf722f29cccbb7a1c81c")+api.searchTimeline4("prey", "9a354d1188ffbf722f29cccbb7a1c81c")+api.searchTimeline5("prey", "9a354d1188ffbf722f29cccbb7a1c81c"));
+		model.addAttribute("timeline4", api.searchTimeline2("prey", "5943d489ee7c1f86482fbeb413b00f44")+api.searchTimeline3("prey", "5943d489ee7c1f86482fbeb413b00f44")+api.searchTimeline4("prey", "5943d489ee7c1f86482fbeb413b00f44")+api.searchTimeline5("prey", "5943d489ee7c1f86482fbeb413b00f44"));
+		model.addAttribute("timeline5", api.searchTimeline2("prey", "fc345216453277fe110a6df4113a8a83")+api.searchTimeline3("prey", "fc345216453277fe110a6df4113a8a83")+api.searchTimeline4("prey", "fc345216453277fe110a6df4113a8a83")+api.searchTimeline5("prey", "fc345216453277fe110a6df4113a8a83"));
+		model.addAttribute("timeline6", api.searchTimeline2("prey", "44d23031895e97b03ba3625149c98fb5")+api.searchTimeline3("prey", "44d23031895e97b03ba3625149c98fb5")+api.searchTimeline4("prey", "44d23031895e97b03ba3625149c98fb5")+api.searchTimeline5("prey", "44d23031895e97b03ba3625149c98fb5"));
+		return "dnftestrank";
+	}
 	@RequestMapping("dnftestinput")
 	public String dnftestinput(HttpServletRequest request, Model model) {
 		
