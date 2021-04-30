@@ -38,13 +38,9 @@
 <%-- 				<c:forEach var="test" items="${testtest}" varStatus="status">
 					<li class="list-group-item">${test[1]}</li>
 				</c:forEach> --%>
-				<li class="list-group-item">${testtest[1]} / 먹은 에픽 수 : ${timeline}</li>
-				<li class="list-group-item">${testtest2[1]} / 먹은 에픽 수 : ${timeline2}</li>
-				<li class="list-group-item">${testtest3[1]} / 먹은 에픽 수 : ${timeline3}</li>
-				<li class="list-group-item">${testtest4[1]} / 먹은 에픽 수 : ${timeline4}</li>
-				<li class="list-group-item">${testtest5[1]} / 먹은 에픽 수 : ${timeline5}</li>
-				<li class="list-group-item">${testtest6[1]} / 먹은 에픽 수 : ${timeline6}</li>
 				
+				<li class="list-group-item">${testtest[1]} / 먹은 에픽 수 : ${timelineall}</li>
+					
 				<c:choose>
 				<c:when test = "${timeline > timeline2}">
 				</c:when>
@@ -53,9 +49,37 @@
 				</c:choose>
 			</ul>
 		</div>
+		<div class="col">
+    		<ul class="list-group">
+				<li class="list-group-item">${testtest2[1]} / 먹은 에픽 수 : ${timelineall2}</li>
+			</ul>
+		</div>
+		<div class="col">
+    		<ul class="list-group">
+				<li class="list-group-item">${testtest3[1]} / 먹은 에픽 수 : ${timelineall3}</li>
+			</ul>
+		</div>
+		<div class="w-100"></div>
+		<div class="col">
+    		<ul class="list-group">
+				<li class="list-group-item">${testtest4[1]} / 먹은 에픽 수 : ${timelineall4}</li>
+			</ul>
+		</div>	
+		<div class="col">
+    		<ul class="list-group">
+				<li class="list-group-item">${testtest5[1]} / 먹은 에픽 수 : ${timelineall5}</li>
+			</ul>
+		</div>
+		<div class="col">
+    		<ul class="list-group">
+				<li class="list-group-item">${testtest6[1]} / 먹은 에픽 수 : ${timelineall6}</li>
+			</ul>
+		</div>	
 	</div>
 </div>
-
+	<div>
+		<h1>제일 에픽 많이 먹은얘 : ${maxepic}</h1>
+	</div>
 
 
 <%-- <c:forEach var="test2" items="${dd}" varStatus="status">

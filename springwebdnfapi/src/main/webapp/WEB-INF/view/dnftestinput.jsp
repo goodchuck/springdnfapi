@@ -89,7 +89,7 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 
 
- 	<form method="get" action="/springwebprjdnfapi/dnf/dnftest2" class="form-inline mt-3">
+ 	<form method="get" action="/springwebprjdnfapi/dnf/dnftest3" class="form-inline mt-3">
  		<select name="server" class="form-control mx-1 mt-2">
 				<option value="anton">안톤</option>
 				<option value="bakal">바칼</option>
@@ -97,15 +97,18 @@
 				<option value="casillas">카시야스</option>
 				<option value="diregie">디레지에</option>
 				<option value="hilder">힐더</option>
-				<option value="prey">프레이</option>
+				<option value="prey" selected>프레이</option>
 				<option value="siroco">시로코</option>
 		</select>
  		<input type="text" name="id" class="form-control mx-1 mt-2" placeholder="내용을 입력하세요.">
  		<button type="submit" class="btn btn-primary mx-1 mt-2">검색</button>
  	</form>
 
+<a href="/springwebprjdnfapi/dnf/dnftest2">우리 캐릭터들 기린력 확인</a>
+<p>1</p>
+<p>2</p>
 <a href="http://developers.neople.co.kr" target="_blank">
-<img src="로고 이미지 위치" alt="Neople 오픈 API" / > </a>
+<img src="로고 이미지 위치" alt="Neople 오픈 API" /> </a>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
   </body>

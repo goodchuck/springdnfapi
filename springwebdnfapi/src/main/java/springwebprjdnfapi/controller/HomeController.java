@@ -28,7 +28,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import springwebprjdnfapi.main.Config;
-import springwebprjdnfapi.main.HealthDTO;
 import springwebprjdnfapi.main.MemberRegistRequest;
 import springwebprjdnfapi.main.Test;
 import springwebprjdnfapi.test.Cm;

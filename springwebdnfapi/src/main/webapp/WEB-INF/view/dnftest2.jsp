@@ -89,59 +89,74 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 
 
-  
+  <h1>한달동안 우리 길드 캐릭의 기린력 </h1>
 <div class="container">
 	<div class="row">
     	<div class="col">
+    	<h3>양티네</h3>
     		<ul class="list-group">
-				<c:forEach var="test" items="${testtest}" varStatus="status">
+<%-- 				<c:forEach var="test" items="${dnfname}" varStatus="status">
 					<li class="list-group-item">${test}</li>
-				</c:forEach>
-				<li class="list-group-item">먹은 에픽 수 : ${timeline}</li>
+				</c:forEach> --%>
+				<li class="list-group-item">${yangid0} / 먹은 에픽 수 : ${yangtimeline0}</li>
+				<li class="list-group-item">${yangid1} / 먹은 에픽 수 : ${yangtimeline1}</li>
 			</ul>
 		</div>
 		<div class="col">
+		<h3>지원이네</h3>
     		<ul class="list-group">
-				<c:forEach var="test" items="${testtest2}" varStatus="status">
+<%-- 				<c:forEach var="test" items="${dnfname2}" varStatus="status">
 					<li class="list-group-item">${test}</li>
-				</c:forEach>
-				<li class="list-group-item">먹은 에픽 수 : ${timeline2}</li>
+				</c:forEach> --%>
+				<li class="list-group-item">${songid0} / 먹은 에픽 수 : ${songtimeline0}</li>
+				<li class="list-group-item">${songid1} / 먹은 에픽 수 : ${songtimeline1}</li>
 			</ul>
 		</div>
 		<div class="col">
+		<h3>조지네</h3>
     		<ul class="list-group">
-				<c:forEach var="test" items="${testtest3}" varStatus="status">
+<%-- 				<c:forEach var="test" items="${dnfname3}" varStatus="status">
 					<li class="list-group-item">${test}</li>
-				</c:forEach>
-				<li class="list-group-item">먹은 에픽 수 : ${timeline3}</li>
+				</c:forEach> --%>
+				<li class="list-group-item">${zoziid0} / 먹은 에픽 수 : ${zozitimeline0}</li>
+				<li class="list-group-item">${zoziid1} / 먹은 에픽 수 : ${zozitimeline1}</li>
 			</ul>
 		</div>
 		<div class="w-100"></div>
 		<div class="col">
+		<h3>성진이네</h3>
     		<ul class="list-group">
-				<c:forEach var="test" items="${testtest4}" varStatus="status">
+<%-- 				<c:forEach var="test" items="${dnfname4}" varStatus="status">
 					<li class="list-group-item">${test}</li>
-				</c:forEach>
-				<li class="list-group-item">먹은 에픽 수 : ${timeline4}</li>
+				</c:forEach> --%>
+				<li class="list-group-item">${sungid0} / 먹은 에픽 수 : ${sungtimeline0}</li>
+				<li class="list-group-item">${sungid1} / 먹은 에픽 수 : ${sungtimeline1}</li>
 			</ul>
 		</div>
 		<div class="col">
+		<h3>차니네</h3>
     		<ul class="list-group">
-				<c:forEach var="test" items="${testtest5}" varStatus="status">
+<%-- 				<c:forEach var="test" items="${dnfname5}" varStatus="status">
 					<li class="list-group-item">${test}</li>
-				</c:forEach>
-				<li class="list-group-item">먹은 에픽 수 : ${timeline5}</li>
+				</c:forEach> --%>
+				<li class="list-group-item">${anid0} / 먹은 에픽 수 : ${antimeline0}</li>
+				<li class="list-group-item">${anid1} / 먹은 에픽 수 : ${antimeline1}</li>
 			</ul>
 		</div>
 		<div class="col">
+		<h3>현우네</h3>
     		<ul class="list-group">
-				<c:forEach var="test" items="${testtest6}" varStatus="status">
+<%-- 				<c:forEach var="test" items="${dnfname6}" varStatus="status">
 					<li class="list-group-item">${test}</li>
-				</c:forEach>
-				<li class="list-group-item">먹은 에픽 수 : ${timeline6}</li>
+				</c:forEach> --%>
+				<li class="list-group-item">${chaid0} / 먹은 에픽 수 : ${chatimeline0}</li>
+				<li class="list-group-item">${chaid1} / 먹은 에픽 수 : ${chatimeline1}</li>
 			</ul>
 		</div>
-	
+		
+		<h2>테스트 </h2>
+		<p>${dnfnametest0 }</p>
+		<p>${dnfnametest1}</p>
 	</div>
 </div>
 
