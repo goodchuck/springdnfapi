@@ -100,7 +100,9 @@
 					<li class="list-group-item">${test}</li>
 				</c:forEach> --%>
 				<c:forEach var="test" items="${yangid}" varStatus="status">
+				<c:if test="${not empty yangid[status.index]}">
 				<li class="list-group-item">${test} / 먹은 에픽 수 : ${yangtl[status.index]}</li>
+				</c:if>
 				</c:forEach>
 			</ul>
 		</div>
