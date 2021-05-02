@@ -63,22 +63,22 @@ public class DnfController {
 
 	
 	//yangid = {api.searchname("prey", "체이서배메"),api.searchname("prey", "BUFF갑니닷")};
-	int[] yangtimeline = {api.searchTimeline("prey", api.searchcharacterId("prey", "체이서배메")),api.searchTimeline("prey", api.searchcharacterId("prey", "Buff갑니닷"))};
+	//int[] yangtimeline = {api.searchTimeline("prey", api.searchcharacterId("prey", "체이서배메")),api.searchTimeline("prey", api.searchcharacterId("prey", "Buff갑니닷"))};
 	//songid = {api.searchname("prey", "닷지닷지닷지"), api.searchname("prey", "버프닷지")};
-	int[] songtimeline = {api.searchTimeline("prey", api.searchcharacterId("prey", "닷지닷지닷지")),api.searchTimeline("prey", api.searchcharacterId("prey", "버프닷지"))};
+	//int[] songtimeline = {api.searchTimeline("prey", api.searchcharacterId("prey", "닷지닷지닷지")),api.searchTimeline("prey", api.searchcharacterId("prey", "버프닷지"))};
 	
 	//zoziid = {api.searchname("prey", "조지조지조지") , api.searchname("prey", "도와조지1") };
 	//int[] zozitimeline = {api.tlall("prey", api.searchcharacterId("prey", "조지조지조지")),api.tlall("prey", api.searchcharacterId("prey", "도와조지1"))};
-	int[] zozitimeline = {api.searchTimeline("prey", api.searchcharacterId("prey", "조지조지조지")),api.searchTimeline("prey", api.searchcharacterId("prey", "도와조지1"))};
+	//int[] zozitimeline = {api.searchTimeline("prey", api.searchcharacterId("prey", "조지조지조지")),api.searchTimeline("prey", api.searchcharacterId("prey", "도와조지1"))};
 	//sungid = {api.searchname("prey", "중화기따위") , api.searchname("prey", "하읏너무굵어") };
 	//int[] sungtimeline = {api.tlall("prey", api.searchcharacterId("prey", "중화기따위")),api.tlall("prey", api.searchcharacterId("prey", "하읏너무굵어"))};
-	int[] sungtimeline = {api.searchTimeline("prey", api.searchcharacterId("prey", "중화기따위")),api.searchTimeline("prey", api.searchcharacterId("prey", "하읏너무굵어"))};
+	//int[] sungtimeline = {api.searchTimeline("prey", api.searchcharacterId("prey", "중화기따위")),api.searchTimeline("prey", api.searchcharacterId("prey", "하읏너무굵어"))};
 	//anid = {api.searchname("prey", "채찍질앗흥♥") , api.searchname("prey", "야생에반젤") };
 	//int[] antimeline = {api.tlall("prey", api.searchcharacterId("prey", "채찍질앗흥♥")),api.tlall("prey", api.searchcharacterId("prey", "야생에반젤"))};
-	int[] antimeline = {api.searchTimeline("prey", api.searchcharacterId("prey", "채찍질앗흥♥")),api.searchTimeline("prey", api.searchcharacterId("prey", "야생에반젤"))};
+	//int[] antimeline = {api.searchTimeline("prey", api.searchcharacterId("prey", "채찍질앗흥♥")),api.searchTimeline("prey", api.searchcharacterId("prey", "야생에반젤"))};
 	//chaid = {api.searchname("prey", "극한의경지") , api.searchname("prey", "변치않는푸름") };
 	//int[] chatimeline = {api.tlall("prey", api.searchcharacterId("prey", "극한의경지")),api.tlall("prey", api.searchcharacterId("prey", "변치않는푸름"))};
-	int[] chatimeline = {api.searchTimeline("prey", api.searchcharacterId("prey", "극한의경지")),api.searchTimeline("prey", api.searchcharacterId("prey", "변치않는푸름"))};
+	//int[] chatimeline = {api.searchTimeline("prey", api.searchcharacterId("prey", "극한의경지")),api.searchTimeline("prey", api.searchcharacterId("prey", "변치않는푸름"))};
 	
 	@RequestMapping("dnftest")
 	public String dnftest(HttpServletRequest request, Model model) {
@@ -227,7 +227,7 @@ public class DnfController {
 			}
 		}
 		
-		return "redirct:/dnftest2";
+		return "redirect:/dnf/dnftest2";
 	}
 	
 	@RequestMapping("dnftestrank")
