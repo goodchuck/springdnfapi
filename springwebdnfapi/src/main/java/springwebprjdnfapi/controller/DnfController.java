@@ -33,6 +33,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import springwebprjdnfapi.main.Config;
+import springwebprjdnfapi.main.DBDTO;
 import springwebprjdnfapi.main.DnfDTO;
 import springwebprjdnfapi.main.MemberRegistRequest;
 import springwebprjdnfapi.main.Test;
@@ -52,11 +53,32 @@ public class DnfController {
 	
 	Test test20 = ctx.getBean(Test.class);
 	MemberRegistRequest mrr = ctx.getBean(MemberRegistRequest.class);
+	
+	DBDTO dbdto = new DBDTO();
 	Connection conn = null;
 	PreparedStatement pstmt = null;
 	ResultSet rs = null;
 	
 	//Api api = new Api();
+
+	
+	//yangid = {api.searchname("prey", "체이서배메"),api.searchname("prey", "BUFF갑니닷")};
+	int[] yangtimeline = {api.searchTimeline("prey", api.searchcharacterId("prey", "체이서배메")),api.searchTimeline("prey", api.searchcharacterId("prey", "Buff갑니닷"))};
+	//songid = {api.searchname("prey", "닷지닷지닷지"), api.searchname("prey", "버프닷지")};
+	int[] songtimeline = {api.searchTimeline("prey", api.searchcharacterId("prey", "닷지닷지닷지")),api.searchTimeline("prey", api.searchcharacterId("prey", "버프닷지"))};
+	
+	//zoziid = {api.searchname("prey", "조지조지조지") , api.searchname("prey", "도와조지1") };
+	//int[] zozitimeline = {api.tlall("prey", api.searchcharacterId("prey", "조지조지조지")),api.tlall("prey", api.searchcharacterId("prey", "도와조지1"))};
+	int[] zozitimeline = {api.searchTimeline("prey", api.searchcharacterId("prey", "조지조지조지")),api.searchTimeline("prey", api.searchcharacterId("prey", "도와조지1"))};
+	//sungid = {api.searchname("prey", "중화기따위") , api.searchname("prey", "하읏너무굵어") };
+	//int[] sungtimeline = {api.tlall("prey", api.searchcharacterId("prey", "중화기따위")),api.tlall("prey", api.searchcharacterId("prey", "하읏너무굵어"))};
+	int[] sungtimeline = {api.searchTimeline("prey", api.searchcharacterId("prey", "중화기따위")),api.searchTimeline("prey", api.searchcharacterId("prey", "하읏너무굵어"))};
+	//anid = {api.searchname("prey", "채찍질앗흥♥") , api.searchname("prey", "야생에반젤") };
+	//int[] antimeline = {api.tlall("prey", api.searchcharacterId("prey", "채찍질앗흥♥")),api.tlall("prey", api.searchcharacterId("prey", "야생에반젤"))};
+	int[] antimeline = {api.searchTimeline("prey", api.searchcharacterId("prey", "채찍질앗흥♥")),api.searchTimeline("prey", api.searchcharacterId("prey", "야생에반젤"))};
+	//chaid = {api.searchname("prey", "극한의경지") , api.searchname("prey", "변치않는푸름") };
+	//int[] chatimeline = {api.tlall("prey", api.searchcharacterId("prey", "극한의경지")),api.tlall("prey", api.searchcharacterId("prey", "변치않는푸름"))};
+	int[] chatimeline = {api.searchTimeline("prey", api.searchcharacterId("prey", "극한의경지")),api.searchTimeline("prey", api.searchcharacterId("prey", "변치않는푸름"))};
 	
 	@RequestMapping("dnftest")
 	public String dnftest(HttpServletRequest request, Model model) {
@@ -104,75 +126,69 @@ public class DnfController {
 	
 	@RequestMapping("dnftest2")
 	public String dnftest2(HttpServletRequest request, Model model) {
-		String[] yangid = {api.searchname("prey", "체이서배메"),api.searchname("prey", "BUFF갑니닷")};
+		
 		//int[] yangtimeline = {api.tlall("prey", api.searchcharacterId("prey", "체이서배메")),api.tlall("prey", api.searchcharacterId("prey", "BUFF갑니닷"))};
-		int[] yangtimeline = {api.searchTimeline("prey", api.searchcharacterId("prey", "체이서배메")),api.searchTimeline("prey", api.searchcharacterId("prey", "Buff갑니닷"))};
-		for(int i = 0; i<yangid.length; i++) {
-			model.addAttribute("yangid"+i+"",yangid[i]);
-			model.addAttribute("yangtimeline"+i+"",yangtimeline[i]);
-		}
+		//yangid[yangid.length] = api.searchname("prey", "잘할게여");
+		//yangtimeline[yangtimeline.length] = api.searchTimeline("prey", api.searchcharacterId("prey", "잘할게여"));
+		/*
+		 * for(int i = 0; i<dbdto.yangid.length; i++) {
+		 * model.addAttribute("yangid"+i+"",dbdto.yangid[i]);
+		 * //model.addAttribute("yangtimeline"+i+"",yangtimeline[i]);
+		 * System.out.println(dbdto.yangid[i]); //System.out.println(yangtimeline[i]); }
+		 */
+		model.addAttribute("yangid", dbdto.yangid);
+		model.addAttribute("yangtl",dbdto.yangtimeline);
 		
-		String[] songid = {api.searchname("prey", "닷지닷지닷지"), api.searchname("prey", "버프닷지")};
+		model.addAttribute("songid", dbdto.songid);
+		model.addAttribute("songtl",dbdto.songtimeline);
+		
+		model.addAttribute("zoziid", dbdto.zoziid);
+		model.addAttribute("zozitl",dbdto.zozitimeline);
+		
+		model.addAttribute("sungid", dbdto.sungid);
+		model.addAttribute("sungtl",dbdto.sungtimeline);
+		
+		model.addAttribute("anid", dbdto.anid);
+		model.addAttribute("antl",dbdto.antimeline);
+		
+		model.addAttribute("chaid", dbdto.chaid);
+		model.addAttribute("chatl",dbdto.chatimeline);
 		//int[] songtimeline = {api.tlall("prey", api.searchcharacterId("prey", "닷지닷지닷지")),api.tlall("prey", api.searchcharacterId("prey", "버프닷지"))};
-		int[] songtimeline = {api.searchTimeline("prey", api.searchcharacterId("prey", "닷지닷지닷지")),api.searchTimeline("prey", api.searchcharacterId("prey", "버프닷지"))};
-		for(int i = 0; i<songid.length; i++) {
-			model.addAttribute("songid"+i+"",songid[i]);
-			model.addAttribute("songtimeline"+i+"",songtimeline[i]);
-		}
-		
-		String[] zoziid = {api.searchname("prey", "조지조지조지") , api.searchname("prey", "도와조지1") };
-		//int[] zozitimeline = {api.tlall("prey", api.searchcharacterId("prey", "조지조지조지")),api.tlall("prey", api.searchcharacterId("prey", "도와조지1"))};
-		int[] zozitimeline = {api.searchTimeline("prey", api.searchcharacterId("prey", "조지조지조지")),api.searchTimeline("prey", api.searchcharacterId("prey", "도와조지1"))};
-		for(int i = 0; i<zoziid.length; i++) {
-			model.addAttribute("zoziid"+i+"",zoziid[i]);
-			model.addAttribute("zozitimeline"+i+"",zozitimeline[i]);
-		}
-		
-		String[] sungid = {api.searchname("prey", "중화기따위") , api.searchname("prey", "하읏너무굵어") };
-		//int[] sungtimeline = {api.tlall("prey", api.searchcharacterId("prey", "중화기따위")),api.tlall("prey", api.searchcharacterId("prey", "하읏너무굵어"))};
-		int[] sungtimeline = {api.searchTimeline("prey", api.searchcharacterId("prey", "중화기따위")),api.searchTimeline("prey", api.searchcharacterId("prey", "하읏너무굵어"))};
-		for(int i = 0; i<sungid.length; i++) {
-			model.addAttribute("sungid"+i+"",sungid[i]);
-			model.addAttribute("sungtimeline"+i+"",sungtimeline[i]);
-		}
-		
-		String[] anid = {api.searchname("prey", "채찍질앗흥♥") , api.searchname("prey", "야생에반젤") };
-		//int[] antimeline = {api.tlall("prey", api.searchcharacterId("prey", "채찍질앗흥♥")),api.tlall("prey", api.searchcharacterId("prey", "야생에반젤"))};
-		int[] antimeline = {api.searchTimeline("prey", api.searchcharacterId("prey", "채찍질앗흥♥")),api.searchTimeline("prey", api.searchcharacterId("prey", "야생에반젤"))};
-		for(int i = 0; i<anid.length; i++) {
-			model.addAttribute("anid"+i+"",anid[i]);
-			model.addAttribute("antimeline"+i+"",antimeline[i]);
-		}
-		
-		String[] chaid = {api.searchname("prey", "극한의경지") , api.searchname("prey", "변치않는푸름") };
-		//int[] chatimeline = {api.tlall("prey", api.searchcharacterId("prey", "극한의경지")),api.tlall("prey", api.searchcharacterId("prey", "변치않는푸름"))};
-		int[] chatimeline = {api.searchTimeline("prey", api.searchcharacterId("prey", "극한의경지")),api.searchTimeline("prey", api.searchcharacterId("prey", "변치않는푸름"))};
-		for(int i = 0; i<chaid.length; i++) {
-			model.addAttribute("chaid"+i+"",chaid[i]);
-			model.addAttribute("chatimeline"+i+"",chatimeline[i]);
-		}
 		
 		/*
-		 * model.addAttribute("dnfnamesong", api.searchId("prey", "닷지닷지닷지"));
-		 * model.addAttribute("dnfnamezozi", api.searchId("prey", "조지조지조지"));
-		 * model.addAttribute("dnfnamegay", api.searchId("prey", "중화기따위"));
-		 * model.addAttribute("dnfnamean", api.searchId("prey", "채찍질앗흥♥"));
-		 * model.addAttribute("dnfnamecha", api.searchId("prey", "극한의경지"));
+		 * for(int i = 0; i<dbdto.songid.length; i++) {
+		 * model.addAttribute("songid"+i+"",dbdto.songid[i]);
+		 * //model.addAttribute("songtimeline"+i+"",songtimeline[i]); }
 		 */
 		
-
 		
 		/*
-		 * model.addAttribute("timeline", api.tlall("prey",
-		 * api.searchcharacterId("prey", "체이서배메"))); model.addAttribute("timeline2",
-		 * api.tlall("prey", api.searchcharacterId("prey", "닷지닷지닷지")));
-		 * model.addAttribute("timeline3", api.tlall("prey",
-		 * api.searchcharacterId("prey", "조지조지조지"))); model.addAttribute("timeline4",
-		 * api.tlall("prey", api.searchcharacterId("prey", "중화기따위")));
-		 * model.addAttribute("timeline5", api.tlall("prey",
-		 * api.searchcharacterId("prey", "채찍질앗흥♥"))); model.addAttribute("timeline6",
-		 * api.tlall("prey", api.searchcharacterId("prey", "극한의경지")));
+		 * for(int i = 0; i<dbdto.zoziid.length; i++) {
+		 * model.addAttribute("zoziid"+i+"",dbdto.zoziid[i]);
+		 * //model.addAttribute("zozitimeline"+i+"",zozitimeline[i]); }
 		 */
+		
+		
+		/*
+		 * for(int i = 0; i<dbdto.sungid.length; i++) {
+		 * model.addAttribute("sungid"+i+"",dbdto.sungid[i]);
+		 * //model.addAttribute("sungtimeline"+i+"",sungtimeline[i]); }
+		 */
+		
+		
+		/*
+		 * for(int i = 0; i<dbdto.anid.length; i++) {
+		 * model.addAttribute("anid"+i+"",dbdto.anid[i]);
+		 * //model.addAttribute("antimeline"+i+"",antimeline[i]); }
+		 */
+		
+		
+		/*
+		 * for(int i = 0; i<dbdto.chaid.length; i++) {
+		 * model.addAttribute("chaid"+i+"",dbdto.chaid[i]);
+		 * //model.addAttribute("chatimeline"+i+"",chatimeline[i]); }
+		 */
+		
 		return "dnftest2";
 	}
 	
@@ -186,6 +202,34 @@ public class DnfController {
 		return "dnftest3";
 	}
 
+	@RequestMapping("dnftest4")
+	public String dnftest4(HttpServletRequest request, Model model) {
+
+		model.addAttribute("cid",request.getParameter("cid"));
+		
+		
+		return "dnftest4";
+	}
+	
+	@RequestMapping("dnftest5")
+	public String dnftest5(HttpServletRequest request, Model model) {
+
+		model.addAttribute("cid",request.getParameter("cid"));
+		model.addAttribute("id",request.getParameter("id"));
+		
+		if(request.getParameter("cid").equals("yang")) {
+			for(int i =0; i<dbdto.yangid.length; i++) {
+				if(dbdto.yangid[i] == null) {
+					dbdto.yangid[i] = api.searchname("prey", request.getParameter("id"));
+					dbdto.yangtimeline[i] = api.tlall("prey", api.searchcharacterId("prey", request.getParameter("id")));
+					break;
+				}
+			}
+		}
+		
+		return "redirct:/dnftest2";
+	}
+	
 	@RequestMapping("dnftestrank")
 	public String dnftestrank(HttpServletRequest request, Model model) {
 

@@ -90,6 +90,7 @@
 
 
   <h1>한달동안 우리 길드 캐릭의 기린력 </h1>
+  <a href="/springwebprjdnfapi/dnf/dnftest4">캐릭터 추가하기</a>
 <div class="container">
 	<div class="row">
     	<div class="col">
@@ -98,8 +99,9 @@
 <%-- 				<c:forEach var="test" items="${dnfname}" varStatus="status">
 					<li class="list-group-item">${test}</li>
 				</c:forEach> --%>
-				<li class="list-group-item">${yangid0} / 먹은 에픽 수 : ${yangtimeline0}</li>
-				<li class="list-group-item">${yangid1} / 먹은 에픽 수 : ${yangtimeline1}</li>
+				<c:forEach var="test" items="${yangid}" varStatus="status">
+				<li class="list-group-item">${test} / 먹은 에픽 수 : ${yangtl[status.index]}</li>
+				</c:forEach>
 			</ul>
 		</div>
 		<div class="col">
@@ -162,45 +164,6 @@
 
 
 
-<%-- <c:forEach var="test2" items="${dd}" varStatus="status">
-<div class="container">
-  <div class="row">
-    <div class="col">
-    	<ul class="list-group">
-  			<li class="list-group-item active">${test2.serverId}</li>
-  			<li class="list-group-item">${test2.characterName}</li>
-  			<li class="list-group-item">${test2.jobName }</li>
-  			<li class="list-group-item">${test2.jobGrowName }</li>
-		</ul>
-    </div>
-    <div class="col">
-        <ul class="list-group">
-  			<li class="list-group-item active"></li>
-  			<li class="list-group-item"></li>
-  			<li class="list-group-item"></li>
-  			<li class="list-group-item"></li>
-		</ul>
-    </div>
-    <div class="w-100"></div>
-    <div class="col">
-        <ul class="list-group">
-  			<li class="list-group-item active"></li>
-  			<li class="list-group-item"></li>
-  			<li class="list-group-item"></li>
-  			<li class="list-group-item"></li>
-		</ul>
-    </div>
-    <div class="col">
-        <ul class="list-group">
-  			<li class="list-group-item active"></li>
-  			<li class="list-group-item"></li>
-  			<li class="list-group-item"></li>
-  			<li class="list-group-item"></li>
-		</ul>
-    </div>
-  </div>
-</div>
-</c:forEach> --%>
 
 <a href="http://developers.neople.co.kr" target="_blank">
 <img src="로고 이미지 위치" alt="Neople 오픈 API" / > </a>
