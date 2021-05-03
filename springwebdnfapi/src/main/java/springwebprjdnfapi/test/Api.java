@@ -251,7 +251,6 @@ public class Api {
 			}
 			}
 			
-			
 			//System.out.println("테스트 3 : " + parseitemName2);
 		} catch (Exception e) {
 			
@@ -260,7 +259,44 @@ public class Api {
 		return ts;
 	}
 	
+	public String searchsinname(String reserverId, String recharacterId) {
+		String itemName = "";
+		try {
+			String serverId = reserverId;
+			String characterId = recharacterId;
+			String htmlUrl = "https://api.neople.co.kr/df/servers/"+serverId+"/characters/"+characterId+"/timeline?limit=100&code=505,504,513,510&apikey=oMDk2YvEtfIzJG8SfXLWDZ3km3J1pKu6";
+			String htmlUrltest = "https://api.neople.co.kr/df/servers/prey/characters/aff735f07862974f704f0543f8e7270a/timeline?limit=100&code=505,504,513,510&apikey=oMDk2YvEtfIzJG8SfXLWDZ3km3J1pKu6";
+			HttpURLConnection conn = (HttpURLConnection) new URL(htmlUrl).openConnection();
+			conn.setRequestMethod("GET");
+			
+			BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+			String inputLine;
+			StringBuffer response = new StringBuffer();
+			while((inputLine= in.readLine()) != null){
+				response.append(inputLine);
+			}
+			in.close();
+			JSONObject myResponse = new JSONObject(response.toString());
+			
+			JSONArray test = myResponse.getJSONObject("timeline").getJSONArray("rows");
+			
+			
+			for(int i=0; i<=100; i++) {
+			String itemRarity = test.getJSONObject(i).getJSONObject("data").getString("itemRarity");
+			if(itemRarity.equals("신화")) {
+			itemName = test.getJSONObject(i).getJSONObject("data").getString("itemName");
+			System.out.println(itemName);
+			}
+			}
+			
+			
+			//System.out.println("테스트 3 : " + parseitemName2);
+		} catch (Exception e) {
+			
+		}
 	
+		return itemName;
+	}
 	public int searchTimeline2(String reserverId, String recharacterId) {
 		int tl2 = 0;
 

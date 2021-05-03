@@ -33,12 +33,7 @@ request.setCharacterEncoding("UTF-8");
     <![endif]-->
 </head>
 <body>
-	<%
-	String userID = null;
-	if (session.getAttribute("userID") != null) {
-		userID = (String) session.getAttribute("userID");
-	}
-	%>
+
 
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 		<a class="navbar-brand" href="#">양티</a>
@@ -49,7 +44,7 @@ request.setCharacterEncoding("UTF-8");
 		</button>
 		<div class="collapse navbar-collapse" id="navbarNavDropdown">
 			<ul class="navbar-nav">
-				<li class="nav-item"><a class="nav-link" href="main.jsp">메인
+				<li class="nav-item"><a class="nav-link" href="/springwebprjdnfapi/index">메인
 						<span class="sr-only">(current)</span>
 				</a></li>
 				<li class="nav-item"><a class="nav-link" href="Ytbbs.jsp">게시판</a>
@@ -58,50 +53,27 @@ request.setCharacterEncoding("UTF-8");
 						노트</a></li>
 				<li class="nav-item"><a class="nav-link" href="gallery.jsp">갤러리</a>
 				</li>
-				<li class="nav-item active"><a class="nav-link"
-					href="/springwebprj/dnf/dnftestinput">던파 연습</a>
 			</ul>
 		</div>
-		<%
-		if (userID == null) {
-		%>
-		<div class="nav-item dropdown" style="float: right;">
 
-			<a class="nav-link dropdown-toggle" href="#"
-				id="navbarDropdownMenuLink" role="button" data-toggle="dropdown"
-				aria-haspopup="true" aria-expanded="false"> 접속하기 </a>
-			<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-				<a class="dropdown-item" href="Ytlogin.jsp">로그인</a> <a
-					class="dropdown-item" href="Ytjoin.jsp">회원가입</a>
-			</div>
-		</div>
-		<%
-		} else {
-		%>
-		<div class="nav-item dropdown" style="float: right;">
 
-			<a class="nav-link dropdown-toggle" href="#"
-				id="navbarDropdownMenuLink" role="button" data-toggle="dropdown"
-				aria-haspopup="true" aria-expanded="false"> 회원관리 </a>
-			<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-				<a class="dropdown-item" href="YtlogoutAction.jsp">로그아웃</a>
-			</div>
-		</div>
-		<%
-		}
-		%>
 	</nav>
 
 	<script
 		src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 
 
-	<h1>한달동안 우리 길드 캐릭의 기린력</h1>
-	<a href="/springwebprjdnfapi/dnf/dnftest4">캐릭터 추가하기</a>
-	<div class="container">
+	<h1>${nowtime}기준 한달동안 우리 길드 캐릭의 기린력</h1>
+	<a href="/springwebprjdnfapi/dnf/dnfcinsertform">캐릭터 추가하기</a>
+	<p></p>
+	<div class="container" style="float:left;">
 		<div class="row" style= "width:1400px;" >
 			<div class="col" style = "width:400px;">
-				<h3>양티네</h3>
+				<h3>양티네
+				<c:forEach var="test" items="${yangtl}" varStatus="status">
+				
+				</c:forEach>
+				</h3>
 				<table class="table">
 					<thead>
 						<tr>
@@ -109,7 +81,7 @@ request.setCharacterEncoding("UTF-8");
 							<th scope="col">캐릭터명</th>
 							<th scope="col">먹은 에픽 수</th>
 							<th scope="col">먹은 신화 수</th>
-							<th scope="col">삭제</th>
+							<th scope="col">#</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -136,6 +108,8 @@ request.setCharacterEncoding("UTF-8");
 							<th scope="col">캐릭터명</th>
 							<th scope="col">먹은 에픽 수</th>
 							<th scope="col">먹은 신화 수</th>
+							 
+							<th scope="col">#</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -146,6 +120,7 @@ request.setCharacterEncoding("UTF-8");
 									<td>${test}</td>
 									<td>${songtl[status.index]}</td>
 									<td>${songsin[status.index]}</td>
+									<td><a href="/springwebprjdnfapi/dnf/cdelete?cid=song&id=${test}">삭제</a></td>
 								</tr>
 							</c:if>
 						</c:forEach>
@@ -161,6 +136,8 @@ request.setCharacterEncoding("UTF-8");
 							<th scope="col">캐릭터명</th>
 							<th scope="col">먹은 에픽 수</th>
 							<th scope="col">먹은 신화 수</th>
+							 
+							<th scope="col">#</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -171,6 +148,7 @@ request.setCharacterEncoding("UTF-8");
 									<td>${test}</td>
 									<td>${zozitl[status.index]}</td>
 									<td>${zozisin[status.index]}</td>
+									<td><a href="/springwebprjdnfapi/dnf/cdelete?cid=zozi&id=${test}">삭제</a></td>
 								</tr>
 							</c:if>
 						</c:forEach>
@@ -178,7 +156,7 @@ request.setCharacterEncoding("UTF-8");
 				</table>
 			</div>
 			<div class="w-100"></div>
-			<div class="col">
+			<div class="col" style = "width:400px;">
 				<h3>성진이네</h3>
 				<table class="table">
 					<thead>
@@ -187,6 +165,8 @@ request.setCharacterEncoding("UTF-8");
 							<th scope="col">캐릭터명</th>
 							<th scope="col">먹은 에픽 수</th>
 							<th scope="col">먹은 신화 수</th>
+							 
+							<th scope="col">#</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -197,13 +177,14 @@ request.setCharacterEncoding("UTF-8");
 									<td>${test}</td>
 									<td>${sungtl[status.index]}</td>
 									<td>${sungsin[status.index]}</td>
+									<td><a href="/springwebprjdnfapi/dnf/cdelete?cid=sung&id=${test}">삭제</a></td>
 								</tr>
 							</c:if>
 						</c:forEach>
 					</tbody>
 				</table>
 			</div>
-			<div class="col">
+			<div class="col" style = "width:400px;">
 				<h3>차니네</h3>
 				<table class="table">
 					<thead>
@@ -212,6 +193,8 @@ request.setCharacterEncoding("UTF-8");
 							<th scope="col">캐릭터명</th>
 							<th scope="col">먹은 에픽 수</th>
 							<th scope="col">먹은 신화 수</th>
+							 
+							<th scope="col">#</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -222,13 +205,14 @@ request.setCharacterEncoding("UTF-8");
 									<td>${test}</td>
 									<td>${antl[status.index]}</td>
 									<td>${ansin[status.index]}</td>
+									<td><a href="/springwebprjdnfapi/dnf/cdelete?cid=an&id=${test}">삭제</a></td>
 								</tr>
 							</c:if>
 						</c:forEach>
 					</tbody>
 				</table>
 			</div>
-			<div class="col">
+			<div class="col" style = "width:400px;">
 				<h3>현우네</h3>
 				<table class="table">
 					<thead>
@@ -237,6 +221,8 @@ request.setCharacterEncoding("UTF-8");
 							<th scope="col">캐릭터명</th>
 							<th scope="col">먹은 에픽 수</th>
 							<th scope="col">먹은 신화 수</th>
+							 
+							<th scope="col">#</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -247,6 +233,7 @@ request.setCharacterEncoding("UTF-8");
 									<td>${test}</td>
 									<td>${chatl[status.index]}</td>
 									<td>${chasin[status.index]}</td>
+									<td><a href="/springwebprjdnfapi/dnf/cdelete?cid=cha&id=${test}">삭제</a></td>
 								</tr>
 							</c:if>
 						</c:forEach>
@@ -254,9 +241,6 @@ request.setCharacterEncoding("UTF-8");
 				</table>
 			</div>
 
-			<h2>테스트</h2>
-			<p>${dnfnametest0 }</p>
-			<p>${dnfnametest1}</p>
 		</div>
 	</div>
 

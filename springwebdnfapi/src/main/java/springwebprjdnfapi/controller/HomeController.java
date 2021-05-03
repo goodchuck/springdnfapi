@@ -63,7 +63,7 @@ public class HomeController {
 	public String index(HttpServletRequest request, Model model) throws UnsupportedEncodingException, IOException {
 		
 
-		return "dnftestinput";
+		return "dnfinput";
 	}
 
 	@RequestMapping("Ytbbs")

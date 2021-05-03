@@ -28,46 +28,27 @@
     <![endif]-->
   </head>
   <body>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-	
-		<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-		<a class="navbar-brand" href="#">양티</a>
-		<button class="navbar-toggler" type="button" data-toggle="collapse"
-			data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown"
-			aria-expanded="false" aria-label="Toggle navigation">
-			<span class="navbar-toggler-icon"></span>
-		</button>
-		<div class="collapse navbar-collapse" id="navbarNavDropdown">
-			<ul class="navbar-nav">
-				<li class="nav-item"><a class="nav-link" href="/springwebprjdnfapi/index">메인
-						<span class="sr-only">(current)</span>
-				</a></li>
-				<li class="nav-item"><a class="nav-link" href="Ytbbs.jsp">게시판</a>
-				</li>
-				<li class="nav-item"><a class="nav-link" href="versionnote.jsp">버전
-						노트</a></li>
-				<li class="nav-item"><a class="nav-link" href="gallery.jsp">갤러리</a>
-				</li>
-			</ul>
-		</div>
-	</nav>
-	
-	
-	<h1>서버 : ${server}</h1>
-	<h1>캐릭터이름 : ${id}</h1>
-	<p>최근순으로 타임라인 10개만 나옵니다.</p>
-	<div class="container">
-		<div class="row">
-			<div class="col">
-				<ul>
-					<c:forEach var="test" items="${timelinedesc}" varStatus="status">
-						<li class="list-group-item">${test.name} : ${test.date} : ${test.itemName }</li>
-					</c:forEach>	
-				</ul>			
-			</div>
-		</div>
-	</div>
   
+	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+
+  <h1>캐릭터 추가하기 : ${cid}</h1>
+<form method="get" action="/springwebprjdnfapi/dnf/cinsert" class="form-inline mt-3">
+ 		<select name="cid" class="form-control mx-1 mt-2">
+				<option value="yang">양티</option>
+				<option value="song">지원</option>
+				<option value="zozi">조지</option>
+				<option value="sung">성진</option>
+				<option value="an">차니</option>
+				<option value="cha">혀누</option>
+		</select>
+ 		<input type="text" name="id" class="form-control mx-1 mt-2" placeholder="내용을 입력하세요.">
+ 		<button type="submit" class="btn btn-primary mx-1 mt-2">추가하기</button>
+ 	</form>
+
+
+
 
 <a href="http://developers.neople.co.kr" target="_blank">
 <img src="로고 이미지 위치" alt="Neople 오픈 API" / > </a>
