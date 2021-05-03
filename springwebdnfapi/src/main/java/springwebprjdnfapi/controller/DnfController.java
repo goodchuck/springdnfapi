@@ -225,7 +225,47 @@ public class DnfController {
 					break;
 				}
 			}
-		}
+		} else if(request.getParameter("cid").equals("song")) {
+			for(int i =0; i<dbdto.songid.length; i++) {
+				if(dbdto.songid[i] == null) {
+					dbdto.songid[i] = api.searchname("prey", request.getParameter("id"));
+					dbdto.songtimeline[i] = api.tlall("prey", api.searchcharacterId("prey", request.getParameter("id")));
+					break;
+				}
+			}
+		} else if(request.getParameter("cid").equals("zozi")) {
+			for(int i =0; i<dbdto.zoziid.length; i++) {
+				if(dbdto.zoziid[i] == null) {
+					dbdto.zoziid[i] = api.searchname("prey", request.getParameter("id"));
+					dbdto.zozitimeline[i] = api.tlall("prey", api.searchcharacterId("prey", request.getParameter("id")));
+					break;
+				}
+			}
+		} else if(request.getParameter("cid").equals("sung")) {
+			for(int i =0; i<dbdto.sungid.length; i++) {
+				if(dbdto.sungid[i] == null) {
+					dbdto.sungid[i] = api.searchname("prey", request.getParameter("id"));
+					dbdto.sungtimeline[i] = api.tlall("prey", api.searchcharacterId("prey", request.getParameter("id")));
+					break;
+				}
+			}
+		} else if(request.getParameter("cid").equals("an")) {
+			for(int i =0; i<dbdto.anid.length; i++) {
+				if(dbdto.anid[i] == null) {
+					dbdto.anid[i] = api.searchname("prey", request.getParameter("id"));
+					dbdto.antimeline[i] = api.tlall("prey", api.searchcharacterId("prey", request.getParameter("id")));
+					break;
+				}
+			}
+		} else if(request.getParameter("cid").equals("cha")) {
+			for(int i =0; i<dbdto.chaid.length; i++) {
+				if(dbdto.chaid[i] == null) {
+					dbdto.chaid[i] = api.searchname("prey", request.getParameter("id"));
+					dbdto.chatimeline[i] = api.tlall("prey", api.searchcharacterId("prey", request.getParameter("id")));
+					break;
+				}
+			}
+		} 
 		
 		return "redirect:/dnf/dnftest2";
 	}

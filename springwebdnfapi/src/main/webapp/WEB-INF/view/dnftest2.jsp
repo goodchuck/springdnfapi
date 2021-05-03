@@ -109,52 +109,67 @@
 		<div class="col">
 		<h3>지원이네</h3>
     		<ul class="list-group">
-<%-- 				<c:forEach var="test" items="${dnfname2}" varStatus="status">
+<%-- 				<c:forEach var="test" items="${dnfname}" varStatus="status">
 					<li class="list-group-item">${test}</li>
 				</c:forEach> --%>
-				<li class="list-group-item">${songid0} / 먹은 에픽 수 : ${songtimeline0}</li>
-				<li class="list-group-item">${songid1} / 먹은 에픽 수 : ${songtimeline1}</li>
+				<c:forEach var="test" items="${songid}" varStatus="status">
+				<c:if test="${not empty songid[status.index]}">
+				<li class="list-group-item">${test} / 먹은 에픽 수 : ${songtl[status.index]}</li>
+				</c:if>
+				</c:forEach>
 			</ul>
 		</div>
 		<div class="col">
 		<h3>조지네</h3>
     		<ul class="list-group">
-<%-- 				<c:forEach var="test" items="${dnfname3}" varStatus="status">
+<%-- 				<c:forEach var="test" items="${dnfname}" varStatus="status">
 					<li class="list-group-item">${test}</li>
 				</c:forEach> --%>
-				<li class="list-group-item">${zoziid0} / 먹은 에픽 수 : ${zozitimeline0}</li>
-				<li class="list-group-item">${zoziid1} / 먹은 에픽 수 : ${zozitimeline1}</li>
+				<c:forEach var="test" items="${zoziid}" varStatus="status">
+				<c:if test="${not empty zoziid[status.index]}">
+				<li class="list-group-item">${test} / 먹은 에픽 수 : ${zozitl[status.index]}</li>
+				</c:if>
+				</c:forEach>
 			</ul>
 		</div>
 		<div class="w-100"></div>
 		<div class="col">
 		<h3>성진이네</h3>
     		<ul class="list-group">
-<%-- 				<c:forEach var="test" items="${dnfname4}" varStatus="status">
+<%-- 				<c:forEach var="test" items="${dnfname}" varStatus="status">
 					<li class="list-group-item">${test}</li>
 				</c:forEach> --%>
-				<li class="list-group-item">${sungid0} / 먹은 에픽 수 : ${sungtimeline0}</li>
-				<li class="list-group-item">${sungid1} / 먹은 에픽 수 : ${sungtimeline1}</li>
+				<c:forEach var="test" items="${sungid}" varStatus="status">
+				<c:if test="${not empty sungid[status.index]}">
+				<li class="list-group-item">${test} / 먹은 에픽 수 : ${sungtl[status.index]}</li>
+				</c:if>
+				</c:forEach>
 			</ul>
 		</div>
 		<div class="col">
 		<h3>차니네</h3>
     		<ul class="list-group">
-<%-- 				<c:forEach var="test" items="${dnfname5}" varStatus="status">
+<%-- 				<c:forEach var="test" items="${dnfname}" varStatus="status">
 					<li class="list-group-item">${test}</li>
 				</c:forEach> --%>
-				<li class="list-group-item">${anid0} / 먹은 에픽 수 : ${antimeline0}</li>
-				<li class="list-group-item">${anid1} / 먹은 에픽 수 : ${antimeline1}</li>
+				<c:forEach var="test" items="${anid}" varStatus="status">
+				<c:if test="${not empty anid[status.index]}">
+				<li class="list-group-item">${test} / 먹은 에픽 수 : ${antl[status.index]}</li>
+				</c:if>
+				</c:forEach>
 			</ul>
 		</div>
 		<div class="col">
 		<h3>현우네</h3>
     		<ul class="list-group">
-<%-- 				<c:forEach var="test" items="${dnfname6}" varStatus="status">
+<%-- 				<c:forEach var="test" items="${dnfname}" varStatus="status">
 					<li class="list-group-item">${test}</li>
 				</c:forEach> --%>
-				<li class="list-group-item">${chaid0} / 먹은 에픽 수 : ${chatimeline0}</li>
-				<li class="list-group-item">${chaid1} / 먹은 에픽 수 : ${chatimeline1}</li>
+				<c:forEach var="test" items="${chaid}" varStatus="status">
+				<c:if test="${not empty chaid[status.index]}">
+				<li class="list-group-item">${test} / 먹은 에픽 수 : ${chatl[status.index]}</li>
+				</c:if>
+				</c:forEach>
 			</ul>
 		</div>
 		
