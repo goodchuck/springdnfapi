@@ -138,56 +138,27 @@ public class DnfController {
 		 */
 		model.addAttribute("yangid", dbdto.yangid);
 		model.addAttribute("yangtl",dbdto.yangtimeline);
+		model.addAttribute("yangsin",dbdto.yangsin);
 		
 		model.addAttribute("songid", dbdto.songid);
 		model.addAttribute("songtl",dbdto.songtimeline);
+		model.addAttribute("songsin",dbdto.songsin);
 		
 		model.addAttribute("zoziid", dbdto.zoziid);
 		model.addAttribute("zozitl",dbdto.zozitimeline);
+		model.addAttribute("zozisin",dbdto.zozisin);
 		
 		model.addAttribute("sungid", dbdto.sungid);
 		model.addAttribute("sungtl",dbdto.sungtimeline);
+		model.addAttribute("sungsin",dbdto.sungsin);
 		
 		model.addAttribute("anid", dbdto.anid);
 		model.addAttribute("antl",dbdto.antimeline);
+		model.addAttribute("ansin",dbdto.ansin);
 		
 		model.addAttribute("chaid", dbdto.chaid);
 		model.addAttribute("chatl",dbdto.chatimeline);
-		//int[] songtimeline = {api.tlall("prey", api.searchcharacterId("prey", "닷지닷지닷지")),api.tlall("prey", api.searchcharacterId("prey", "버프닷지"))};
-		
-		/*
-		 * for(int i = 0; i<dbdto.songid.length; i++) {
-		 * model.addAttribute("songid"+i+"",dbdto.songid[i]);
-		 * //model.addAttribute("songtimeline"+i+"",songtimeline[i]); }
-		 */
-		
-		
-		/*
-		 * for(int i = 0; i<dbdto.zoziid.length; i++) {
-		 * model.addAttribute("zoziid"+i+"",dbdto.zoziid[i]);
-		 * //model.addAttribute("zozitimeline"+i+"",zozitimeline[i]); }
-		 */
-		
-		
-		/*
-		 * for(int i = 0; i<dbdto.sungid.length; i++) {
-		 * model.addAttribute("sungid"+i+"",dbdto.sungid[i]);
-		 * //model.addAttribute("sungtimeline"+i+"",sungtimeline[i]); }
-		 */
-		
-		
-		/*
-		 * for(int i = 0; i<dbdto.anid.length; i++) {
-		 * model.addAttribute("anid"+i+"",dbdto.anid[i]);
-		 * //model.addAttribute("antimeline"+i+"",antimeline[i]); }
-		 */
-		
-		
-		/*
-		 * for(int i = 0; i<dbdto.chaid.length; i++) {
-		 * model.addAttribute("chaid"+i+"",dbdto.chaid[i]);
-		 * //model.addAttribute("chatimeline"+i+"",chatimeline[i]); }
-		 */
+		model.addAttribute("chasin",dbdto.chasin);
 		
 		return "dnftest2";
 	}
@@ -221,7 +192,8 @@ public class DnfController {
 			for(int i =0; i<dbdto.yangid.length; i++) {
 				if(dbdto.yangid[i] == null) {
 					dbdto.yangid[i] = api.searchname("prey", request.getParameter("id"));
-					dbdto.yangtimeline[i] = api.tlall("prey", api.searchcharacterId("prey", request.getParameter("id")));
+					dbdto.yangtimeline[i] = api.searchTimeline("prey", api.searchcharacterId("prey", request.getParameter("id")));
+					dbdto.yangsin[i] = api.searchsin("prey", api.searchcharacterId("prey", request.getParameter("id")));
 					break;
 				}
 			}
@@ -229,7 +201,8 @@ public class DnfController {
 			for(int i =0; i<dbdto.songid.length; i++) {
 				if(dbdto.songid[i] == null) {
 					dbdto.songid[i] = api.searchname("prey", request.getParameter("id"));
-					dbdto.songtimeline[i] = api.tlall("prey", api.searchcharacterId("prey", request.getParameter("id")));
+					dbdto.songtimeline[i] = api.searchTimeline("prey", api.searchcharacterId("prey", request.getParameter("id")));
+					dbdto.songsin[i] = api.searchsin("prey", api.searchcharacterId("prey", request.getParameter("id")));
 					break;
 				}
 			}
@@ -237,7 +210,8 @@ public class DnfController {
 			for(int i =0; i<dbdto.zoziid.length; i++) {
 				if(dbdto.zoziid[i] == null) {
 					dbdto.zoziid[i] = api.searchname("prey", request.getParameter("id"));
-					dbdto.zozitimeline[i] = api.tlall("prey", api.searchcharacterId("prey", request.getParameter("id")));
+					dbdto.zozitimeline[i] = api.searchTimeline("prey", api.searchcharacterId("prey", request.getParameter("id")));
+					dbdto.zozisin[i] = api.searchsin("prey", api.searchcharacterId("prey", request.getParameter("id")));
 					break;
 				}
 			}
@@ -245,7 +219,8 @@ public class DnfController {
 			for(int i =0; i<dbdto.sungid.length; i++) {
 				if(dbdto.sungid[i] == null) {
 					dbdto.sungid[i] = api.searchname("prey", request.getParameter("id"));
-					dbdto.sungtimeline[i] = api.tlall("prey", api.searchcharacterId("prey", request.getParameter("id")));
+					dbdto.sungtimeline[i] = api.searchTimeline("prey", api.searchcharacterId("prey", request.getParameter("id")));
+					dbdto.sungsin[i] = api.searchsin("prey", api.searchcharacterId("prey", request.getParameter("id")));
 					break;
 				}
 			}
@@ -253,7 +228,8 @@ public class DnfController {
 			for(int i =0; i<dbdto.anid.length; i++) {
 				if(dbdto.anid[i] == null) {
 					dbdto.anid[i] = api.searchname("prey", request.getParameter("id"));
-					dbdto.antimeline[i] = api.tlall("prey", api.searchcharacterId("prey", request.getParameter("id")));
+					dbdto.antimeline[i] = api.searchTimeline("prey", api.searchcharacterId("prey", request.getParameter("id")));
+					dbdto.ansin[i] = api.searchsin("prey", api.searchcharacterId("prey", request.getParameter("id")));
 					break;
 				}
 			}
@@ -261,7 +237,8 @@ public class DnfController {
 			for(int i =0; i<dbdto.chaid.length; i++) {
 				if(dbdto.chaid[i] == null) {
 					dbdto.chaid[i] = api.searchname("prey", request.getParameter("id"));
-					dbdto.chatimeline[i] = api.tlall("prey", api.searchcharacterId("prey", request.getParameter("id")));
+					dbdto.chatimeline[i] = api.searchTimeline("prey", api.searchcharacterId("prey", request.getParameter("id")));
+					dbdto.chasin[i] = api.searchsin("prey", api.searchcharacterId("prey", request.getParameter("id")));
 					break;
 				}
 			}
@@ -269,6 +246,28 @@ public class DnfController {
 		
 		return "redirect:/dnf/dnftest2";
 	}
+	
+	@RequestMapping("cdelete")
+	public String cdelete(HttpServletRequest request, Model model) {
+		if(request.getParameter("cid").equals("yang")) {
+			for(int i=0; i<=10; i++) {
+			if(dbdto.yangid[i].equals(request.getParameter("id"))) {
+				dbdto.yangid[i] = null;
+				dbdto.yangtimeline[i] = 0;
+				dbdto.yangsin[i] = 0;
+				break;
+				}
+				dbdto.yangid[i] = dbdto.yangid[i+1];
+				dbdto.yangtimeline[i] = dbdto.yangtimeline[i+1];
+				dbdto.yangsin[i] = dbdto.yangsin[i+1];
+				
+			}
+			
+			}
+		return "redirect:/dnf/dnftest2";
+		}
+		
+	
 	
 	@RequestMapping("dnftestrank")
 	public String dnftestrank(HttpServletRequest request, Model model) {
