@@ -14,7 +14,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- 위 3개의 메타 태그는 *반드시* head 태그의 처음에 와야합니다; 어떤 다른 콘텐츠들은 반드시 이 태그들 *다음에* 와야 합니다 -->
     <title>양티 홈페이지</title>
-    
+    <link rel="stylesheet" type="text/css" href="../css/yang.css">
 	
 	<link rel="stylesheet" href="http://poiemaweb.com/assets/css/ajax.css">
     <!-- 부트스트랩 -->
@@ -52,25 +52,41 @@
 		</div>
 	</nav>
 	
-	
-	<h1>서버 : ${server}</h1>
-	<h1>캐릭터이름 : ${id}</h1>
+	<div>
+	<h4>서버 : ${server} / 캐릭터이름 : ${id}</h4>
 	<p>최근순으로 타임라인 10개만 나옵니다.</p>
 	<div class="container">
 		<div class="row">
-			<div class="col">
-				<ul>
+			<div class="col" >
+				<ul style="width:700px;">
 					<c:forEach var="test" items="${timelinedesc}" varStatus="status">
-						<li class="list-group-item">${test.name} : ${test.date} : ${test.itemName }</li>
+						<c:if test="${test.name == '아이템 획득(던전)'}">
+						<li class="list-group-item">${test.name} : ${test.date} : ${test.itemName}</li>
+						</c:if>
 					</c:forEach>	
 				</ul>			
 			</div>
 		</div>
 	</div>
-  
+	
+	<div class="container">
+		<div class="row">
+			<div class="col" >
+				<ul style="width:700px;">
+					<c:forEach var="test" items="${timelinedesc}" varStatus="status">
+						<c:if test="${test.name == '아이템 획득(지옥 파티)'}">
+						<li class="list-group-item">${test.name} : ${test.date} : ${test.itemName}</li>
+						</c:if>				
+					</c:forEach>	
+				</ul>			
+			</div>
+		</div>
+	</div>
+	
+  	</div>
 
 <a href="http://developers.neople.co.kr" target="_blank">
-<img src="로고 이미지 위치" alt="Neople 오픈 API" / > </a>
+<img src="로고 이미지 위치" alt="Neople 오픈 API" /> </a>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
   </body>
