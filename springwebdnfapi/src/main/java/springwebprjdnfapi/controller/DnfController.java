@@ -65,8 +65,8 @@ public class DnfController {
 	public int update(String cid, int ecount, int scount) {
 		return jdbcTemplate.update("update epiccount set ecount = ?,scount=? where cid = ?",ecount,scount,cid);
 	}
-	public int delete(int bbsid) {
-		return jdbcTemplate.update("update bbs set bbsav = 0 where bbsid = ?",bbsid);
+	public int delete(String cid) {
+		return jdbcTemplate.update("delete from epiccount where cid = ?",cid);
 	}
 	public int cinsert(String cid, int ecount, int scount) {
 		return jdbcTemplate.update("insert into epiccount (cid, ecount, scount) values(?,?,?)",cid,ecount,scount);
@@ -270,86 +270,87 @@ public class DnfController {
 	
 	@RequestMapping("cdelete")
 	public String cdelete(HttpServletRequest request, Model model) {
-		if(request.getParameter("cid").equals("yang")) {
-			for(int i=0; i<=10; i++) {
-			if(dbdto.yangid[i].equals(request.getParameter("id"))) {
-				dbdto.yangid[i] = null;
-				dbdto.yangtimeline[i] = 0;
-				dbdto.yangsin[i] = 0;
-				break;
-				}
-				dbdto.yangid[i] = dbdto.yangid[i+1];
-				dbdto.yangtimeline[i] = dbdto.yangtimeline[i+1];
-				dbdto.yangsin[i] = dbdto.yangsin[i+1];
-			}
-			}
-		else if(request.getParameter("cid").equals("song")) {
-			for(int i=0; i<=10; i++) {
-			if(dbdto.songid[i].equals(request.getParameter("id"))) {
-				dbdto.songid[i] = null;
-				dbdto.songtimeline[i] = 0;
-				dbdto.songsin[i] = 0;
-				break;
-				}
-				dbdto.songid[i] = dbdto.songid[i+1];
-				dbdto.songtimeline[i] = dbdto.songtimeline[i+1];
-				dbdto.songsin[i] = dbdto.songsin[i+1];
-			}
-			}
-		else if(request.getParameter("cid").equals("zozi")) {
-			for(int i=0; i<=10; i++) {
-			if(dbdto.zoziid[i].equals(request.getParameter("id"))) {
-				dbdto.zoziid[i] = null;
-				dbdto.zozitimeline[i] = 0;
-				dbdto.zozisin[i] = 0;
-				break;
-				}
-				dbdto.zoziid[i] = dbdto.zoziid[i+1];
-				dbdto.zozitimeline[i] = dbdto.zozitimeline[i+1];
-				dbdto.zozisin[i] = dbdto.zozisin[i+1];
-			}
-			}
-		else if(request.getParameter("cid").equals("sung")) {
-			for(int i=0; i<=10; i++) {
-			if(dbdto.sungid[i].equals(request.getParameter("id"))) {
-				dbdto.sungid[i] = null;
-				dbdto.sungtimeline[i] = 0;
-				dbdto.sungsin[i] = 0;
-				break;
-				}
-				dbdto.sungid[i] = dbdto.sungid[i+1];
-				dbdto.sungtimeline[i] = dbdto.sungtimeline[i+1];
-				dbdto.sungsin[i] = dbdto.sungsin[i+1];
-			}
-			}
-		else if(request.getParameter("cid").equals("an")) {
-			for(int i=0; i<=10; i++) {
-			if(dbdto.anid[i].equals(request.getParameter("id"))) {
-				dbdto.anid[i] = null;
-				dbdto.antimeline[i] = 0;
-				dbdto.ansin[i] = 0;
-				break;
-				}
-				dbdto.anid[i] = dbdto.anid[i+1];
-				dbdto.antimeline[i] = dbdto.antimeline[i+1];
-				dbdto.ansin[i] = dbdto.ansin[i+1];
-			}
-			}
-		else if(request.getParameter("cid").equals("cha")) {
-			for(int i=0; i<=10; i++) {
-			if(dbdto.chaid[i].equals(request.getParameter("id"))) {
-				dbdto.chaid[i] = null;
-				dbdto.chatimeline[i] = 0;
-				dbdto.chasin[i] = 0;
-				break;
-				}
-				dbdto.chaid[i] = dbdto.chaid[i+1];
-				dbdto.chatimeline[i] = dbdto.chatimeline[i+1];
-				dbdto.chasin[i] = dbdto.chasin[i+1];
-			}
-			}
+		delete(request.getParameter("cid"));
+//		if(request.getParameter("cid").equals("yang")) {
+//			for(int i=0; i<=10; i++) {
+//			if(dbdto.yangid[i].equals(request.getParameter("id"))) {
+//				dbdto.yangid[i] = null;
+//				dbdto.yangtimeline[i] = 0;
+//				dbdto.yangsin[i] = 0;
+//				break;
+//				}
+//				dbdto.yangid[i] = dbdto.yangid[i+1];
+//				dbdto.yangtimeline[i] = dbdto.yangtimeline[i+1];
+//				dbdto.yangsin[i] = dbdto.yangsin[i+1];
+//			}
+//			}
+//		else if(request.getParameter("cid").equals("song")) {
+//			for(int i=0; i<=10; i++) {
+//			if(dbdto.songid[i].equals(request.getParameter("id"))) {
+//				dbdto.songid[i] = null;
+//				dbdto.songtimeline[i] = 0;
+//				dbdto.songsin[i] = 0;
+//				break;
+//				}
+//				dbdto.songid[i] = dbdto.songid[i+1];
+//				dbdto.songtimeline[i] = dbdto.songtimeline[i+1];
+//				dbdto.songsin[i] = dbdto.songsin[i+1];
+//			}
+//			}
+//		else if(request.getParameter("cid").equals("zozi")) {
+//			for(int i=0; i<=10; i++) {
+//			if(dbdto.zoziid[i].equals(request.getParameter("id"))) {
+//				dbdto.zoziid[i] = null;
+//				dbdto.zozitimeline[i] = 0;
+//				dbdto.zozisin[i] = 0;
+//				break;
+//				}
+//				dbdto.zoziid[i] = dbdto.zoziid[i+1];
+//				dbdto.zozitimeline[i] = dbdto.zozitimeline[i+1];
+//				dbdto.zozisin[i] = dbdto.zozisin[i+1];
+//			}
+//			}
+//		else if(request.getParameter("cid").equals("sung")) {
+//			for(int i=0; i<=10; i++) {
+//			if(dbdto.sungid[i].equals(request.getParameter("id"))) {
+//				dbdto.sungid[i] = null;
+//				dbdto.sungtimeline[i] = 0;
+//				dbdto.sungsin[i] = 0;
+//				break;
+//				}
+//				dbdto.sungid[i] = dbdto.sungid[i+1];
+//				dbdto.sungtimeline[i] = dbdto.sungtimeline[i+1];
+//				dbdto.sungsin[i] = dbdto.sungsin[i+1];
+//			}
+//			}
+//		else if(request.getParameter("cid").equals("an")) {
+//			for(int i=0; i<=10; i++) {
+//			if(dbdto.anid[i].equals(request.getParameter("id"))) {
+//				dbdto.anid[i] = null;
+//				dbdto.antimeline[i] = 0;
+//				dbdto.ansin[i] = 0;
+//				break;
+//				}
+//				dbdto.anid[i] = dbdto.anid[i+1];
+//				dbdto.antimeline[i] = dbdto.antimeline[i+1];
+//				dbdto.ansin[i] = dbdto.ansin[i+1];
+//			}
+//			}
+//		else if(request.getParameter("cid").equals("cha")) {
+//			for(int i=0; i<=10; i++) {
+//			if(dbdto.chaid[i].equals(request.getParameter("id"))) {
+//				dbdto.chaid[i] = null;
+//				dbdto.chatimeline[i] = 0;
+//				dbdto.chasin[i] = 0;
+//				break;
+//				}
+//				dbdto.chaid[i] = dbdto.chaid[i+1];
+//				dbdto.chatimeline[i] = dbdto.chatimeline[i+1];
+//				dbdto.chasin[i] = dbdto.chasin[i+1];
+//			}
+//			}
 		
-		return "redirect:/dnf/dnfdibol";
+		return "redirect:/dnf/dnfrank";
 		}
 		
 	

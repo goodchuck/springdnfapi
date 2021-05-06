@@ -53,8 +53,9 @@
 	<div class="row">
     	<div class="col">
     		<ul class="list-group">
+    				<li class="list-group-item">캐릭터 / 먹은 에픽 수 / 먹은 신화수</li>
 				<c:forEach var="test" items="${ec}" varStatus="status">
-					<li class="list-group-item">${test.cid} / ${test.ecount} / ${test.scount}</li>
+					<li class="list-group-item">${test.cid} / ${test.ecount} / ${test.scount} <a href="/springwebprjdnfapi/dnf/cdelete?cid=${test.cid}">삭제</a></li>
 				</c:forEach> 	
 			</ul>
 		</div>
