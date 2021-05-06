@@ -47,24 +47,13 @@
 			</ul>
 		</div>
 	</nav>
-  	<h1>가장 에픽 많이 먹은 얘</h1>
+  	<h1>${nowtime}기준 한달 동안 가장 에픽 많이 먹은 얘</h1>
   <a href="/springwebprjdnfapi/dnf/dnfcinsertform">캐릭터 추가하기</a>
-<%-- <div class="container">
-	<div class="row">
-    	<div class="col">
-    		<ul class="list-group">
-    				<li class="list-group-item">캐릭터 / 먹은 에픽 수 / 먹은 신화수</li>
-				<c:forEach var="test" items="${ec}" varStatus="status">
-					<li class="list-group-item">${test.cid} / ${test.ecount} / ${test.scount} <a href="/springwebprjdnfapi/dnf/cdelete?cid=${test.cid}">삭제</a></li>
-				</c:forEach> 	
-			</ul>
-		</div>
-	</div>
-</div> --%>
+
 <div class="col" style = "width:1200px;">
 				<table class="table">
 					<thead>
-						<tr>
+						<tr align=center>
 							<th scope="col">#</th>
 							<th scope="col">캐릭터명</th>
 							<th scope="col">먹은 에픽 수</th>
@@ -75,14 +64,68 @@
 					</thead>
 					<tbody>
 						<c:forEach var="test" items="${ec}" varStatus="status">
-								<tr>
+								<c:choose>
+								<c:when test="${test.an == '양티'}">
+								<tr bgcolor="#FFFF00" align=center>
 									<th scope="row">${status.count}</th>
-									<td>${test.cid}</td>
-									<td>${test.ecount}</td>
-									<td>${test.scount}</td>
-									<td>${test.an}</td>
+									<td><b>${test.cid}</b></td>
+									<td><b>${test.ecount}</b></td>
+									<td><b>${test.scount}</b></td>
+									<td><b>${test.an}</b></td>
 									<td><a href="/springwebprjdnfapi/dnf/cdelete?cid=${test.cid}">삭제</a></td>
 								</tr>
+								</c:when>
+								<c:when test="${test.an == '닷지닷지닷지닷지'}">
+								<tr bgcolor="#80FF00" align=center>
+									<th scope="row">${status.count}</th>
+									<td><b>${test.cid}</b></td>
+									<td><b>${test.ecount}</b></td>
+									<td><b>${test.scount}</b></td>
+									<td><b>${test.an}</b></td>
+									<td><a href="/springwebprjdnfapi/dnf/cdelete?cid=${test.cid}">삭제</a></td>
+								</tr>
+								</c:when>
+								<c:when test="${test.an == '조지조지조지조지'}">
+								<tr bgcolor="#2EFEC8" align=center>
+									<th scope="row">${status.count}</th>
+									<td><b>${test.cid}</b></td>
+									<td><b>${test.ecount}</b></td>
+									<td><b>${test.scount}</b></td>
+									<td><b>${test.an}</b></td>
+									<td><a href="/springwebprjdnfapi/dnf/cdelete?cid=${test.cid}">삭제</a></td>
+								</tr>
+								</c:when>
+								<c:when test="${test.an == '채찍으로때려줘'}">
+								<tr bgcolor="#2E9AFE" align=center>
+									<th scope="row">${status.count}</th>
+									<td><b>${test.cid}</b></td>
+									<td><b>${test.ecount}</b></td>
+									<td><b>${test.scount}</b></td>
+									<td><b>${test.an}</b></td>
+									<td><a href="/springwebprjdnfapi/dnf/cdelete?cid=${test.cid}">삭제</a></td>
+								</tr>
+								</c:when>
+								<c:when test="${test.an == '팬티따위'}">
+								<tr bgcolor="#9A2EFE" align=center>
+									<th scope="row">${status.count}</th>
+									<td><b>${test.cid}</b></td>
+									<td><b>${test.ecount}</b></td>
+									<td><b>${test.scount}</b></td>
+									<td><b>${test.an}</b></td>
+									<td><a href="/springwebprjdnfapi/dnf/cdelete?cid=${test.cid}">삭제</a></td>
+								</tr>
+								</c:when>
+								<c:when test="${test.an == '애기븝구리단'}">
+								<tr bgcolor="#FE2EF7" align=center>
+									<th scope="row">${status.count}</th>
+									<td><b>${test.cid}</b></td>
+									<td><b>${test.ecount}</b></td>
+									<td><b>${test.scount}</b></td>
+									<td><b>${test.an}</b></td>
+									<td><a href="/springwebprjdnfapi/dnf/cdelete?cid=${test.cid}">삭제</a></td>
+								</tr>
+								</c:when>
+								</c:choose>
 						</c:forEach>
 					</tbody>
 				</table>

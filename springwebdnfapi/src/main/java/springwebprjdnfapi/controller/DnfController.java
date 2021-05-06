@@ -361,7 +361,7 @@ public class DnfController {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String SQL = "SELECT * FROM epiccount order by ecount desc";
+		String SQL = "SELECT * FROM epiccount order by ecount desc, scount desc";
 		List<Epiccount> ec = new ArrayList<Epiccount>();
 		try {
 			conn = dataSource.getConnection();
@@ -383,6 +383,7 @@ public class DnfController {
 			try { if(rs != null) rs.close(); } catch (Exception e) { e.printStackTrace();}
 		}
 		model.addAttribute("ec",ec);
+		model.addAttribute("nowtime", now_dt);
 		return "dnfrank";
 	}
 	
