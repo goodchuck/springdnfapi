@@ -31,10 +31,29 @@
   
 	
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+		<a class="navbar-brand" href="#">양티</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse"
+			data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown"
+			aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarNavDropdown">
+			<ul class="navbar-nav">
+				<li class="nav-item"><a class="nav-link" href="/springwebprjdnfapi/index">메인
+						<span class="sr-only">(current)</span>
+				</a></li>
+				<li class="nav-item"><a class="nav-link" href="Ytbbs.jsp">게시판</a></li>
+				<li class="nav-item"><a class="nav-link" href="/springwebprjdnfapi/versionnote">버전 노트</a></li>
+				<li class="nav-item"><a class="nav-link" href="/springwebprjdnfapi/gallery">갤러리</a></li>
+				<li class="nav-item"><a class="nav-link" href="/springwebprjdnfapi/dnf/dnfrank">기린랭킹</a></li>
+			</ul>
+		</div>
+	</nav>
 
   <h1>캐릭터 추가하기 : ${cid}</h1>
-<form method="get" action="/springwebprjdnfapi/dnf/cinsert" class="form-inline mt-3">
+  <form method="get" action="/springwebprjdnfapi/db/cinsert" class="form-inline mt-3">
+<%-- <form method="get" action="/springwebprjdnfapi/dnf/cinsert" class="form-inline mt-3"> --%>
  		<select name="cid" class="form-control mx-1 mt-2">
 				<option value="yang">양티</option>
 				<option value="song">지원</option>
@@ -51,7 +70,7 @@
 
 
 <a href="http://developers.neople.co.kr" target="_blank">
-<img src="로고 이미지 위치" alt="Neople 오픈 API" / > </a>
+<img src="../images/공식표기_color.png" alt="Neople 오픈 API" /> </a>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
   </body>

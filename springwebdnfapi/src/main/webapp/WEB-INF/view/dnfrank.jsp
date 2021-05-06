@@ -14,24 +14,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- 위 3개의 메타 태그는 *반드시* head 태그의 처음에 와야합니다; 어떤 다른 콘텐츠들은 반드시 이 태그들 *다음에* 와야 합니다 -->
     <title>양티 홈페이지</title>
-	<link rel="stylesheet" type="text/css" href="css/yang.css">
+    
 	
 	<link rel="stylesheet" href="http://poiemaweb.com/assets/css/ajax.css">
     <!-- 부트스트랩 -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
-	
-	
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
     <!-- IE8 에서 HTML5 요소와 미디어 쿼리를 위한 HTML5 shim 와 Respond.js -->
     <!-- WARNING: Respond.js 는 당신이 file:// 을 통해 페이지를 볼 때는 동작하지 않습니다. -->
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
   </head>
-  <body>
-  
-	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <body>	
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 		<a class="navbar-brand" href="#">양티</a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse"
 			data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown"
@@ -46,44 +44,29 @@
 				<li class="nav-item"><a class="nav-link" href="Ytbbs.jsp">게시판</a></li>
 				<li class="nav-item"><a class="nav-link" href="/springwebprjdnfapi/versionnote">버전 노트</a></li>
 				<li class="nav-item"><a class="nav-link" href="/springwebprjdnfapi/gallery">갤러리</a></li>
-				<li class="nav-item"><a class="nav-link" href="/springwebprjdnfapi/dnf/dnfrank">기린랭킹</a></li>
 			</ul>
 		</div>
 	</nav>
+  	<h1>가장 에픽 많이 먹은 얘</h1>
+  <a href="/springwebprjdnfapi/dnf/dnfcinsertform">캐릭터 추가하기</a>
+<div class="container">
+	<div class="row">
+    	<div class="col">
+    		<ul class="list-group">
+				<c:forEach var="test" items="${ec}" varStatus="status">
+					<li class="list-group-item">${test.cid} / ${test.ecount} / ${test.scount}</li>
+				</c:forEach> 	
+			</ul>
+		</div>
+	</div>
+</div>
 
-	<div>
-  		<h1>양티의 연습 던파 사이트!</h1>
-	</div>
 
-	<div>
- 	<form method="get" action="/springwebprjdnfapi/dnf/dnftest3" class="form-inline mt-3">
- 		<select name="server" class="form-control mx-1 mt-2">
-				<option value="anton">안톤</option>
-				<option value="bakal">바칼</option>
-				<option value="cain">카인</option>
-				<option value="casillas">카시야스</option>
-				<option value="diregie">디레지에</option>
-				<option value="hilder">힐더</option>
-				<option value="prey" selected>프레이</option>
-				<option value="siroco">시로코</option>
-		</select>
- 		<input type="text" name="id" class="form-control mx-1 mt-2" placeholder="내용을 입력하세요.">
- 		<button type="submit" class="btn btn-primary mx-1 mt-2">검색</button>
- 	</form>
-	</div>
-	
-	<p> </p>
-	<div>
-		<img src="images/3구슬.jpg" />
-	</div>
-	
-	<div>
-		<h1><a href="/springwebprjdnfapi/dnf/dnfdibol">우리 캐릭터들 기린력 확인</a></h1>
-		
-		<a href="http://developers.neople.co.kr" target="_blank">
-		<img src="images/공식표기_color.png" alt="Neople 오픈 API" /> </a>
-	</div>
 
+
+
+<a href="http://developers.neople.co.kr" target="_blank">
+<img src="로고 이미지 위치" alt="Neople 오픈 API" /> </a>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
   </body>

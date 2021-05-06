@@ -14,18 +14,22 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.sql.DataSource;
 
 import java.sql.PreparedStatement;
 
 import org.apache.commons.dbcp2.BasicDataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
+
+import com.mchange.v2.c3p0.ComboPooledDataSource;
 
 import springwebprjdnfapi.main.Config;
 import springwebprjdnfapi.main.MemberRegistRequest;
@@ -38,7 +42,15 @@ import springwebprjdnfapi.test.Cm;
 public class HomeController {
 
 	@Autowired
-	BasicDataSource dataSource;
+	ComboPooledDataSource dataSource;
+	//BasicDataSource dataSource;
+	
+	private JdbcTemplate jdbcTemplate;
+	
+	public HomeController(DataSource dataSource) {
+		jdbcTemplate = new JdbcTemplate(dataSource);
+	}
+	
 
 	AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext(Config.class);
 

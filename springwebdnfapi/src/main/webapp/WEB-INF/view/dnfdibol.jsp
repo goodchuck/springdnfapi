@@ -53,6 +53,7 @@ request.setCharacterEncoding("UTF-8");
 						노트</a></li>
 				<li class="nav-item"><a class="nav-link" href="gallery.jsp">갤러리</a>
 				</li>
+				<li class="nav-item"><a class="nav-link" href="/springwebprjdnfapi/dnf/dnfrank">기린랭킹</a></li>
 			</ul>
 		</div>
 
@@ -247,8 +248,8 @@ request.setCharacterEncoding("UTF-8");
 
 
 
-	<a href="http://developers.neople.co.kr" target="_blank"> <img
-		src="로고 이미지 위치" alt="Neople 오픈 API"/ >
+	<a href="http://developers.neople.co.kr" target="_blank"> 
+	<img src="../images/공식표기_color.png" alt="Neople 오픈 API" />
 	</a>
 
 	<script

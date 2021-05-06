@@ -23,4 +23,9 @@ public class Config {
 	public Api api() {
 		return new Api();
 	}
+	
+	@Bean
+	public DBDTO dbdto() {
+		return new DBDTO();
+	}
 }

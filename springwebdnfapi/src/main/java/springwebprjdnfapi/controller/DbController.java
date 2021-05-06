@@ -4,30 +4,81 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.sql.DataSource;
 
 import org.apache.commons.dbcp2.BasicDataSource;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
+import com.mchange.v2.c3p0.ComboPooledDataSource;
+
+import springwebprjdnfapi.main.Config;
+import springwebprjdnfapi.main.Epiccount;
 import springwebprjdnfapi.main.Test;
+import springwebprjdnfapi.test.Api;
 
 @Controller
 @RequestMapping("/db/")
 public class DbController {
 
 	@Autowired
-	BasicDataSource dataSource;
+	ComboPooledDataSource dataSource;
+	//BasicDataSource dataSource;
 	
+	private JdbcTemplate jdbcTemplate;
+	
+	public DbController(DataSource dataSource) {
+		jdbcTemplate = new JdbcTemplate(dataSource);
+	}
+	
+	public int update(String cid, int ecount, int scount) {
+		return jdbcTemplate.update("update epiccount set ecount = ?,scount=? where cid = ?",ecount,scount,cid);
+	}
+	public int delete(int bbsid) {
+		return jdbcTemplate.update("update bbs set bbsav = 0 where bbsid = ?",bbsid);
+	}
+	public int cinsert(String cid, int ecount, int scount) {
+		return jdbcTemplate.update("insert into epiccount (cid, ecount, scount) values(?,?,?)",cid,ecount,scount);
+	}
+	public int userjoin(String id, String pw, String name, String gender, String email) {
+		return jdbcTemplate.update("insert into user values (?,?,?,?,?)",id,pw,name,gender,email);
+	}
+	
+	public List<Epiccount> selectlist(String cid) {
+		return jdbcTemplate.query("select cid from epiccount where cid = ?",new Object[] {cid},
+				new RowMapper<Epiccount>() {
+			@Override
+			public Epiccount mapRow(ResultSet rs, int rowNum) throws SQLException {
+				Epiccount ec = new Epiccount();
+				ec.setCid(rs.getString("cid"));
+				ec.setEcount(rs.getInt("ecount"));
+				ec.setScount(rs.getInt("scount"));
+				return ec;
+			}
+		}
+				);
+	}
+	public String select(String cid) {
+		return jdbcTemplate.queryForObject("select cid from epiccount where cid = ?",new Object[] {cid}, String.class);
+	}
 	@Autowired
 	Test test;
+	
+	AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext(Config.class);
+	Api api = ctx.getBean(Api.class);
 	
 	Connection conn = null;
 	PreparedStatement pstmt = null;
@@ -50,7 +101,7 @@ public class DbController {
 					//model.addAttribute("msg", "success");
 					return "redirect:/index";
 				} else {
-					//bindingResult.rejectValue("pw","notMatch", "¾ÆÀÌµð¿Í ºñ¹Ð¹øÈ£°¡ ¸ÂÁö¾Ê½À´Ï´Ù.");
+					//bindingResult.rejectValue("pw","notMatch", "ï¿½ï¿½ï¿½Ìµï¿½ï¿½ ï¿½ï¿½Ð¹ï¿½È£ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ê½ï¿½ï¿½Ï´ï¿½.");
 					model.addAttribute("msg", "failure");
 					return "userLogin";
 				}
@@ -83,6 +134,19 @@ public class DbController {
 		   }
 
 	}
+	
+	@RequestMapping("cinsert")
+	public String cinsert(HttpServletRequest request, HttpServletResponse response, Model model) throws IOException {
+		//String test = select(request.getParameter("id"));
+		List<Epiccount> test = selectlist(request.getParameter("id"));
+		int epiccount = api.searchTimeline("prey", api.searchcharacterId("prey", request.getParameter("id")));
+		int sincount = api.searchsin("prey", api.searchcharacterId("prey", request.getParameter("id")));
+		cinsert(request.getParameter("id"), epiccount, sincount);
+
+		   return "redirect:/dnf/dnfrank";
+	}
+	
+
 
 	@RequestMapping("bbsDeleteAction")
 	public String BbsDeleteAction(HttpServletRequest request, HttpServletResponse response, Model model, HttpSession session) throws IOException {
@@ -114,27 +178,7 @@ public class DbController {
 	
 	@RequestMapping("/dbTest.do3")
 	public String dbTest3(HttpServletRequest httpServletRequest, Model model) {
-		String SQL = "INSERT INTO USER VALUES (?,?,?,?,?)";
-
-		try {
-			conn = dataSource.getConnection();
-			pstmt = conn.prepareStatement(SQL);
-			pstmt.setString(1, httpServletRequest.getParameter("userID"));
-			pstmt.setString(2, httpServletRequest.getParameter("userPassword"));
-			pstmt.setString(3, httpServletRequest.getParameter("userName"));
-			pstmt.setString(4, httpServletRequest.getParameter("userGender"));
-			pstmt.setString(5, httpServletRequest.getParameter("userEmail"));
-			pstmt.executeUpdate();
-
-			model.addAttribute("ts", "È®ÀÎ");
-		} catch (Exception e) {
-			e.printStackTrace();
-
-		} finally {
-			try { if(conn != null) conn.close(); } catch (Exception e) { e.printStackTrace();}
-			try { if(pstmt != null) pstmt.close(); } catch (Exception e) { e.printStackTrace();}
-			try { if(rs != null) rs.close(); } catch (Exception e) { e.printStackTrace();}
-		}
+		
 		return "index";
 	}
 	
@@ -153,7 +197,7 @@ public class DbController {
 					model.addAttribute("userPassword", rs.getString("userPassword"));
 				}
 			}
-			model.addAttribute("ts", "È®ÀÎ");
+			model.addAttribute("ts", "È®ï¿½ï¿½");
 		} catch (Exception e) {
 			e.printStackTrace();
 

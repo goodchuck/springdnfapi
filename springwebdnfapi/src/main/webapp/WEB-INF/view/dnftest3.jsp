@@ -52,12 +52,14 @@
 		</div>
 	</nav>
 	<div style="margin:0 auto; width:50%;">
-	<h4>서버 : ${server} / 캐릭터이름 : ${id}</h4>
+	<h1>서버 : ${server} / 캐릭터이름 : ${id}</h1>
 	<p>최근순으로 타임라인 10개만 나옵니다.</p>
 	</div>
+	
 	<div class="container" style="float:left; width:33%;">
 		<div class="row">
 			<div class="col" >
+				<h2>헬을 제외한 곳에서 습득한 에픽</h2>
 				<ul style="width:550px;">
 					<c:forEach var="test" items="${timelinedesc}" varStatus="status">
 						<c:if test="${test.name == '아이템 획득(던전)'}">
@@ -72,6 +74,7 @@
 	<div class="container" style="float:left; width:33%;">
 		<div class="row">
 			<div class="col" >
+				<h2>지옥파티에서 습득한 에픽</h2>
 				<ul style="width:550px;">
 					<c:forEach var="test" items="${timelinedesc}" varStatus="status">
 						<c:if test="${test.name == '아이템 획득(지옥 파티)'}">
@@ -85,7 +88,7 @@
 
 
 <a href="http://developers.neople.co.kr" target="_blank">
-<img src="로고 이미지 위치" alt="Neople 오픈 API" /> </a>
+<img src="../images/공식표기_color.png" alt="Neople 오픈 API" /> </a>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
   </body>

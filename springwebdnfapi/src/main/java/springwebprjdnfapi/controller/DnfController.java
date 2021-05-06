@@ -19,6 +19,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.sql.DataSource;
 
 import java.sql.PreparedStatement;
 
@@ -27,6 +28,8 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.context.support.GenericXmlApplicationContext;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -34,9 +37,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
+import com.mchange.v2.c3p0.ComboPooledDataSource;
+
 import springwebprjdnfapi.main.Config;
 import springwebprjdnfapi.main.DBDTO;
 import springwebprjdnfapi.main.DnfDTO;
+import springwebprjdnfapi.main.Epiccount;
 import springwebprjdnfapi.main.MemberRegistRequest;
 import springwebprjdnfapi.main.Test;
 import springwebprjdnfapi.test.Api;
@@ -48,15 +54,36 @@ import springwebprjdnfapi.test.Api;
 public class DnfController {
 
 	@Autowired
-	BasicDataSource dataSource;
-
+	ComboPooledDataSource dataSource;
+	//BasicDataSource dataSource;
+	
+	private JdbcTemplate jdbcTemplate;
+	
+	public DnfController(DataSource dataSource) {
+		jdbcTemplate = new JdbcTemplate(dataSource);
+	}
+	public int update(String cid, int ecount, int scount) {
+		return jdbcTemplate.update("update epiccount set ecount = ?,scount=? where cid = ?",ecount,scount,cid);
+	}
+	public int delete(int bbsid) {
+		return jdbcTemplate.update("update bbs set bbsav = 0 where bbsid = ?",bbsid);
+	}
+	public int cinsert(String cid, int ecount, int scount) {
+		return jdbcTemplate.update("insert into epiccount (cid, ecount, scount) values(?,?,?)",cid,ecount,scount);
+	}
+	public int userjoin(String id, String pw, String name, String gender, String email) {
+		return jdbcTemplate.update("insert into user values (?,?,?,?,?)",id,pw,name,gender,email);
+	}
+	//GenericXmlApplicationContext ctx2 = new GenericXmlApplicationContext("classpath:config.xml");
+	
 	AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext(Config.class);
 	Api api = ctx.getBean(Api.class);
 	
 	Test test20 = ctx.getBean(Test.class);
 	MemberRegistRequest mrr = ctx.getBean(MemberRegistRequest.class);
 	
-	DBDTO dbdto = new DBDTO();
+	DBDTO dbdto = ctx.getBean(DBDTO.class);
+	//DBDTO dbdto = new DBDTO();
 	Connection conn = null;
 	PreparedStatement pstmt = null;
 	ResultSet rs = null;
@@ -65,8 +92,6 @@ public class DnfController {
 	Date now = new Date(); 
 	String now_dt = format.format(now);
 
-	
-	//Api api = new Api();
 
 	
 	@RequestMapping("dnftest")
@@ -329,34 +354,37 @@ public class DnfController {
 		
 	
 	
-	@RequestMapping("dnftestrank")
+	@RequestMapping("dnfrank")
 	public String dnftestrank(HttpServletRequest request, Model model) {
-
-		//model.addAttribute("testtest", api.searchId(request.getParameter("server"), request.getParameter("id")));
-		model.addAttribute("testtest", api.searchId("prey", "체이서배메"));
-		model.addAttribute("testtest2", api.searchId("prey", "닷지닷지닷지"));
-		model.addAttribute("testtest3", api.searchId("prey", "조지조지조지"));
-		model.addAttribute("testtest4", api.searchId("prey", "중화기따위"));
-		model.addAttribute("testtest5", api.searchId("prey", "채찍질앗흥♥"));
-		model.addAttribute("testtest6", api.searchId("prey", "극한의경지"));
-		
-		model.addAttribute("timelineall", api.tlall("prey", "e1e49bd4a4e8f9b3a3f7022f1460bd99"));
-		model.addAttribute("timelineall2", api.tlall("prey", "4caff656a4cd3c1cb174376bbe66a46e"));
-		model.addAttribute("timelineall3", api.tlall("prey", "9a354d1188ffbf722f29cccbb7a1c81c"));
-		model.addAttribute("timelineall4", api.tlall("prey", "5943d489ee7c1f86482fbeb413b00f44"));
-		model.addAttribute("timelineall5", api.tlall("prey", "fc345216453277fe110a6df4113a8a83"));
-		model.addAttribute("timelineall6", api.tlall("prey", "44d23031895e97b03ba3625149c98fb5"));
-		
-		int array[] = {api.tlall("prey", "e1e49bd4a4e8f9b3a3f7022f1460bd99"), api.tlall("prey", "4caff656a4cd3c1cb174376bbe66a46e"), api.tlall("prey", "9a354d1188ffbf722f29cccbb7a1c81c"),api.tlall("prey", "5943d489ee7c1f86482fbeb413b00f44"),api.tlall("prey", "fc345216453277fe110a6df4113a8a83"),api.tlall("prey", "44d23031895e97b03ba3625149c98fb5")};
-		int max = array[0];
-		for(int i =0; i<array.length; i++) {
-			if(max<array[i]) {
-				max = array[i];
+	
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String SQL = "SELECT * FROM epiccount order by ecount desc";
+		List<Epiccount> ec = new ArrayList<Epiccount>();
+		try {
+			conn = dataSource.getConnection();
+			pstmt = conn.prepareStatement(SQL);
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				update(rs.getString("cid"), api.searchTimeline("prey", api.searchcharacterId("prey", rs.getString("cid"))),api.searchsin("prey", api.searchcharacterId("prey", rs.getString("cid"))));
+				ec.add(new Epiccount(rs.getString("cid"),rs.getInt("ecount"),rs.getInt("scount")));
 			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			model.addAttribute("msg", "failure");
+		} finally {
+			try { if(conn != null) conn.close(); } catch (Exception e) { e.printStackTrace();}
+			try { if(pstmt != null) pstmt.close(); } catch (Exception e) { e.printStackTrace();}
+			try { if(rs != null) rs.close(); } catch (Exception e) { e.printStackTrace();}
 		}
-		model.addAttribute("maxepic", max);
-		return "dnftestrank";
+		model.addAttribute("ec",ec);
+		return "dnfrank";
 	}
+	
+	
+	
 	@RequestMapping("dnfinput")
 	public String dnfinput(HttpServletRequest request, Model model) {
 		
