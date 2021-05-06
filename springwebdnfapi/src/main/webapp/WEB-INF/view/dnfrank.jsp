@@ -49,7 +49,7 @@
 	</nav>
   	<h1>가장 에픽 많이 먹은 얘</h1>
   <a href="/springwebprjdnfapi/dnf/dnfcinsertform">캐릭터 추가하기</a>
-<div class="container">
+<%-- <div class="container">
 	<div class="row">
     	<div class="col">
     		<ul class="list-group">
@@ -60,8 +60,33 @@
 			</ul>
 		</div>
 	</div>
-</div>
-
+</div> --%>
+<div class="col" style = "width:1200px;">
+				<table class="table">
+					<thead>
+						<tr>
+							<th scope="col">#</th>
+							<th scope="col">캐릭터명</th>
+							<th scope="col">먹은 에픽 수</th>
+							<th scope="col">먹은 신화 수</th>
+							<th scope="col">모험단</th>
+							<th scope="col">#</th>
+						</tr>
+					</thead>
+					<tbody>
+						<c:forEach var="test" items="${ec}" varStatus="status">
+								<tr>
+									<th scope="row">${status.count}</th>
+									<td>${test.cid}</td>
+									<td>${test.ecount}</td>
+									<td>${test.scount}</td>
+									<td>${test.an}</td>
+									<td><a href="/springwebprjdnfapi/dnf/cdelete?cid=${test.cid}">삭제</a></td>
+								</tr>
+						</c:forEach>
+					</tbody>
+				</table>
+			</div>
 
 
 

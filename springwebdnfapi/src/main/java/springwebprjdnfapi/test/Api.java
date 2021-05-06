@@ -297,6 +297,36 @@ public class Api {
 	
 		return itemName;
 	}
+	
+	public String searchAdName(String reserverId, String recharacterId) {
+		String an = "";
+
+		try {
+			String serverId = reserverId;
+			String characterId = recharacterId;
+			String htmlUrl = "https://api.neople.co.kr/df/servers/"+serverId+"/characters/"+characterId+"/timeline?limit=100&code=505,504,513,510&apikey=oMDk2YvEtfIzJG8SfXLWDZ3km3J1pKu6";
+			String htmlUrltest = "https://api.neople.co.kr/df/servers/prey/characters/aff735f07862974f704f0543f8e7270a/timeline?limit=100&code=505,504,513,510&apikey=oMDk2YvEtfIzJG8SfXLWDZ3km3J1pKu6";
+			HttpURLConnection conn = (HttpURLConnection) new URL(htmlUrl).openConnection();
+			conn.setRequestMethod("GET");
+			
+			BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+			String inputLine;
+			StringBuffer response = new StringBuffer();
+			while((inputLine= in.readLine()) != null){
+				response.append(inputLine);
+			}
+			in.close();
+			//System.out.println("테스트 1: " + response.toString());
+			JSONObject myResponse = new JSONObject(response.toString());
+			an = myResponse.getString("adventureName");
+			System.out.println(an);
+			
+		} catch (Exception e) {
+			
+		}
+	
+		return an;
+	}
 	public int searchTimeline2(String reserverId, String recharacterId) {
 		int tl2 = 0;
 		int tl22 = 0;

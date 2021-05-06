@@ -369,8 +369,10 @@ public class DnfController {
 			rs = pstmt.executeQuery();
 			
 			while(rs.next()) {
-				update(rs.getString("cid"), api.searchTimeline("prey", api.searchcharacterId("prey", rs.getString("cid"))),api.searchsin("prey", api.searchcharacterId("prey", rs.getString("cid"))));
-				ec.add(new Epiccount(rs.getString("cid"),rs.getInt("ecount"),rs.getInt("scount")));
+				update(rs.getString("cid"), api.searchTimeline("prey", 
+						api.searchcharacterId("prey", rs.getString("cid"))),
+						api.searchsin("prey", api.searchcharacterId("prey", rs.getString("cid"))));
+				ec.add(new Epiccount(rs.getString("cid"),rs.getInt("ecount"),rs.getInt("scount"),rs.getString("an")));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

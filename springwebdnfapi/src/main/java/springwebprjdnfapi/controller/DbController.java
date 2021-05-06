@@ -50,8 +50,8 @@ public class DbController {
 	public int delete(int bbsid) {
 		return jdbcTemplate.update("update bbs set bbsav = 0 where bbsid = ?",bbsid);
 	}
-	public int cinsert(String cid, int ecount, int scount) {
-		return jdbcTemplate.update("insert into epiccount (cid, ecount, scount) values(?,?,?)",cid,ecount,scount);
+	public int cinsert(String cid, int ecount, int scount, String an) {
+		return jdbcTemplate.update("insert into epiccount (cid, ecount, scount, an) values(?,?,?,?)",cid,ecount,scount,an);
 	}
 	public int userjoin(String id, String pw, String name, String gender, String email) {
 		return jdbcTemplate.update("insert into user values (?,?,?,?,?)",id,pw,name,gender,email);
@@ -141,7 +141,8 @@ public class DbController {
 		List<Epiccount> test = selectlist(request.getParameter("id"));
 		int epiccount = api.searchTimeline("prey", api.searchcharacterId("prey", request.getParameter("id")));
 		int sincount = api.searchsin("prey", api.searchcharacterId("prey", request.getParameter("id")));
-		cinsert(request.getParameter("id"), epiccount, sincount);
+		String an = api.searchAdName("prey", api.searchcharacterId("prey", request.getParameter("id")));
+		cinsert(request.getParameter("id"), epiccount, sincount,an);
 
 		   return "redirect:/dnf/dnfrank";
 	}
