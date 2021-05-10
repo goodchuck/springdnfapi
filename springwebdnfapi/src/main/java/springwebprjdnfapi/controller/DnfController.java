@@ -153,6 +153,7 @@ public class DnfController {
 		model.addAttribute("timelinedesc", api.searchTimelinedesc(request.getParameter("server"), api.searchcharacterId(request.getParameter("server"), request.getParameter("id"))));
 		model.addAttribute("timelinecount",api.tlall(request.getParameter("server"), api.searchcharacterId(request.getParameter("server"), request.getParameter("id"))));
 		model.addAttribute("timelinecount3",api.searchTimeline3(request.getParameter("server"), api.searchcharacterId(request.getParameter("server"), request.getParameter("id"))));
+		model.addAttribute("timelinecount4",api.searchTimeline4(request.getParameter("server"), api.searchcharacterId(request.getParameter("server"), request.getParameter("id"))));
 		return "dnftest3";
 	}
 

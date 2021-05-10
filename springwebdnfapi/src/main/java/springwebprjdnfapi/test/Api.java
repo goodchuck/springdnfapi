@@ -340,7 +340,7 @@ public class Api {
 	public int searchTimeline2(String reserverId, String recharacterId) {
 		int tl2 = 0;
 		int tl22 = 0;
-
+		int tl222 = 0;
 		try {
 			String serverId = reserverId;
 			String characterId = recharacterId;
@@ -362,33 +362,51 @@ public class Api {
 			
 			JSONArray test = myResponse.getJSONObject("timeline").getJSONArray("rows");
 			
-			JSONObject next = myResponse.getJSONObject("next");
-			String parsenext = next.getString("next");
-			System.out.println(parsenext);
-			if(parsenext != null) {
-				
-				String htmlUrl2 = "https://api.neople.co.kr/df/servers/"+serverId+"/characters/"+characterId+"/timeline?limit=100&code=505,504,513,510&next="+parsenext+"&startDate=20200601T0000&endDate=20200830T2359&apikey=oMDk2YvEtfIzJG8SfXLWDZ3km3J1pKu6";
-				HttpURLConnection conn2 = (HttpURLConnection) new URL(htmlUrl2).openConnection();
-				conn2.setRequestMethod("GET");
+			if(!myResponse.getJSONObject("timeline").isNull("next")) {
+			String next = myResponse.getJSONObject("timeline").getString("next");
+			System.out.println(next);
+			String htmlUrl2 = "https://api.neople.co.kr/df/servers/"+serverId+"/characters/"+characterId+"/timeline?next="+next+"&apikey=oMDk2YvEtfIzJG8SfXLWDZ3km3J1pKu6";
+			HttpURLConnection conn2 = (HttpURLConnection) new URL(htmlUrl2).openConnection();
+			conn2.setRequestMethod("GET");
 				
 				BufferedReader in2 = new BufferedReader(new InputStreamReader(conn2.getInputStream()));
 				String inputLine2;
 				StringBuffer response2 = new StringBuffer();
-				while((inputLine2= in.readLine()) != null){
+				while((inputLine2= in2.readLine()) != null){
 					response2.append(inputLine2);
 				}
 				in2.close();
 				JSONObject myResponse2 = new JSONObject(response2.toString());
 				JSONArray test2 = myResponse2.getJSONObject("timeline").getJSONArray("rows");
 				tl22 = test2.length();
+				System.out.println(tl22);
+				conn2.disconnect();
+				
+				if(!myResponse2.getJSONObject("timeline").isNull("next")) {
+					String next2 = myResponse2.getJSONObject("timeline").getString("next");
+					System.out.println(next2);
+					String htmlUrl3 = "https://api.neople.co.kr/df/servers/"+serverId+"/characters/"+characterId+"/timeline?next="+next+"&apikey=oMDk2YvEtfIzJG8SfXLWDZ3km3J1pKu6";
+					HttpURLConnection conn3 = (HttpURLConnection) new URL(htmlUrl2).openConnection();
+					conn3.setRequestMethod("GET");
+						
+						BufferedReader in3 = new BufferedReader(new InputStreamReader(conn3.getInputStream()));
+						String inputLine3;
+						StringBuffer response3 = new StringBuffer();
+						while((inputLine3= in3.readLine()) != null){
+							response3.append(inputLine3);
+						}
+						in3.close();
+						JSONObject myResponse3 = new JSONObject(response3.toString());
+						JSONArray test3 = myResponse3.getJSONObject("timeline").getJSONArray("rows");
+						tl222 = test3.length();
+						System.out.println(tl22);
+						conn3.disconnect();
+					}
 			}
 			
-			//System.out.println("테스트 2:" + test.toString());
-			String parseitemName2 = test.getJSONObject(0).getString("name");
-			tl2 = test.length() + tl22;
-			//System.out.println(tl2);
-			//System.out.println("테스트 3 : " + parseitemName2);	
-			
+
+			tl2 = test.length()+ tl22 + tl222;
+			conn.disconnect();
 		} catch (Exception e) {
 			
 		}
@@ -401,7 +419,7 @@ public class Api {
 
 		int tl3 = 0;
 		int tl33 = 0;
-
+		int tl333 = 0;
 		try {
 			String serverId = reserverId;
 			String characterId = recharacterId;
@@ -421,29 +439,49 @@ public class Api {
 			
 			JSONArray test = myResponse.getJSONObject("timeline").getJSONArray("rows");
 			
-			JSONObject next = myResponse.getJSONObject("next");
-			String parsenext = next.getString("next");
-			System.out.println(parsenext);
-			if(parsenext != null) {
+			if(!myResponse.getJSONObject("timeline").isNull("next")) {
+			String next = myResponse.getJSONObject("timeline").getString("next");
+			System.out.println(next);
+			String htmlUrl2 = "https://api.neople.co.kr/df/servers/"+serverId+"/characters/"+characterId+"/timeline?next="+next+"&apikey=oMDk2YvEtfIzJG8SfXLWDZ3km3J1pKu6";
+			HttpURLConnection conn2 = (HttpURLConnection) new URL(htmlUrl2).openConnection();
+			conn2.setRequestMethod("GET");
 				
-				String htmlUrl2 = "https://api.neople.co.kr/df/servers/"+serverId+"/characters/"+characterId+"/timeline?limit=100&code=505,504,513,510&next="+parsenext+"&startDate=20200831T0000&endDate=20201129T2359&apikey=oMDk2YvEtfIzJG8SfXLWDZ3km3J1pKu6";
-				HttpURLConnection conn2 = (HttpURLConnection) new URL(htmlUrl2).openConnection();
-				conn2.setRequestMethod("GET");
-				System.out.println("100개 넘었는지 확인");
 				BufferedReader in2 = new BufferedReader(new InputStreamReader(conn2.getInputStream()));
 				String inputLine2;
 				StringBuffer response2 = new StringBuffer();
-				while((inputLine2= in.readLine()) != null){
+				while((inputLine2= in2.readLine()) != null){
 					response2.append(inputLine2);
 				}
 				in2.close();
 				JSONObject myResponse2 = new JSONObject(response2.toString());
 				JSONArray test2 = myResponse2.getJSONObject("timeline").getJSONArray("rows");
 				tl33 = test2.length();
+				System.out.println(tl33);
+				conn2.disconnect();
+				
+				if(!myResponse2.getJSONObject("timeline").isNull("next")) {
+					String next2 = myResponse2.getJSONObject("timeline").getString("next");
+					System.out.println(next2);
+					String htmlUrl3 = "https://api.neople.co.kr/df/servers/"+serverId+"/characters/"+characterId+"/timeline?next="+next+"&apikey=oMDk2YvEtfIzJG8SfXLWDZ3km3J1pKu6";
+					HttpURLConnection conn3 = (HttpURLConnection) new URL(htmlUrl2).openConnection();
+					conn3.setRequestMethod("GET");
+						
+						BufferedReader in3 = new BufferedReader(new InputStreamReader(conn3.getInputStream()));
+						String inputLine3;
+						StringBuffer response3 = new StringBuffer();
+						while((inputLine3= in3.readLine()) != null){
+							response3.append(inputLine3);
+						}
+						in3.close();
+						JSONObject myResponse3 = new JSONObject(response3.toString());
+						JSONArray test3 = myResponse3.getJSONObject("timeline").getJSONArray("rows");
+						tl333 = test3.length();
+						System.out.println(tl333);
+						conn3.disconnect();
+					}
 			}
-			String parseitemName2 = test.getJSONObject(0).getString("name");
-			tl3 = test.length()+ tl33;
-			
+			tl3 = test.length()+ tl33 + tl333;
+			conn.disconnect();
 		} catch (Exception e) {
 			
 		}
@@ -455,6 +493,8 @@ public class Api {
 
 		int tl4 = 0;
 		int tl44 = 0;
+		int tl444 = 0;
+		int tl4444 = 0;
 		try {
 			String serverId = reserverId;
 			String characterId = recharacterId;
@@ -470,43 +510,69 @@ public class Api {
 				response.append(inputLine);
 			}
 			in.close();
-			//System.out.println("테스트 1: " + response.toString());
 			JSONObject myResponse = new JSONObject(response.toString());
 			
 			JSONArray test = myResponse.getJSONObject("timeline").getJSONArray("rows");
 			
-			JSONObject next = myResponse.getJSONObject("next");
-			String parsenext = next.getString("next");
-			System.out.println(parsenext);
-			if(parsenext != null) {
-				
-				String htmlUrl2 = "https://api.neople.co.kr/df/servers/"+serverId+"/characters/"+characterId+"/timeline?limit=100&code=505,504,513,510&next="+parsenext+"&startDate=20200831T0000&endDate=20201129T2359&apikey=oMDk2YvEtfIzJG8SfXLWDZ3km3J1pKu6";
-				HttpURLConnection conn2 = (HttpURLConnection) new URL(htmlUrl2).openConnection();
-				conn2.setRequestMethod("GET");
+			if(!myResponse.getJSONObject("timeline").isNull("next")) {
+			String next = myResponse.getJSONObject("timeline").getString("next");
+			System.out.println(next);
+			String htmlUrl2 = "https://api.neople.co.kr/df/servers/"+serverId+"/characters/"+characterId+"/timeline?next="+next+"&apikey=oMDk2YvEtfIzJG8SfXLWDZ3km3J1pKu6";
+			HttpURLConnection conn2 = (HttpURLConnection) new URL(htmlUrl2).openConnection();
+			conn2.setRequestMethod("GET");
 				
 				BufferedReader in2 = new BufferedReader(new InputStreamReader(conn2.getInputStream()));
 				String inputLine2;
 				StringBuffer response2 = new StringBuffer();
-				while((inputLine2= in.readLine()) != null){
+				while((inputLine2= in2.readLine()) != null){
 					response2.append(inputLine2);
 				}
 				in2.close();
 				JSONObject myResponse2 = new JSONObject(response2.toString());
 				JSONArray test2 = myResponse2.getJSONObject("timeline").getJSONArray("rows");
 				tl44 = test2.length();
+				System.out.println(tl44);
+				conn2.disconnect();
+				
+				if(!myResponse2.getJSONObject("timeline").isNull("next")) {
+					String next2 = myResponse2.getJSONObject("timeline").getString("next");
+					System.out.println(next2);
+					String htmlUrl3 = "https://api.neople.co.kr/df/servers/"+serverId+"/characters/"+characterId+"/timeline?next="+next2+"&apikey=oMDk2YvEtfIzJG8SfXLWDZ3km3J1pKu6";
+					HttpURLConnection conn3 = (HttpURLConnection) new URL(htmlUrl3).openConnection();
+					conn3.setRequestMethod("GET");
+						
+						BufferedReader in3 = new BufferedReader(new InputStreamReader(conn3.getInputStream()));
+						String inputLine3;
+						StringBuffer response3 = new StringBuffer();
+						while((inputLine3= in3.readLine()) != null){
+							response3.append(inputLine3);
+						}
+						in3.close();
+						JSONObject myResponse3 = new JSONObject(response3.toString());
+						JSONArray test3 = myResponse3.getJSONObject("timeline").getJSONArray("rows");
+						tl444 = test3.length();
+						System.out.println(tl444);
+						conn3.disconnect();
+						
+					}
 			}
-			String parseitemName2 = test.getJSONObject(0).getString("name");
-			tl4 = test.length()+ tl44;
+			tl4 = test.length()+ tl44 + tl444;
+			conn.disconnect();
 		} catch (Exception e) {
 			
 		}
-		
+		try {
+			
+		} catch (Exception e) {
+			
+		}
 		return tl4;
 	}
 	
 	public int searchTimeline5(String reserverId, String recharacterId) {
 		int tl5 = 0;
 		int tl55 = 0;
+		int tl555 = 0;
 		try {
 			String serverId = reserverId;
 			String characterId = recharacterId;
@@ -525,28 +591,52 @@ public class Api {
 			JSONObject myResponse = new JSONObject(response.toString());
 			
 			JSONArray test = myResponse.getJSONObject("timeline").getJSONArray("rows");
-			JSONObject next = myResponse.getJSONObject("next");
-			String parsenext = next.getString("next");
-			System.out.println(parsenext);
-			if(parsenext != null) {
-				
-				String htmlUrl2 = "https://api.neople.co.kr/df/servers/"+serverId+"/characters/"+characterId+"/timeline?limit=100&code=505,504,513,510&next="+parsenext+"&startDate=20200831T0000&endDate=20201129T2359&apikey=oMDk2YvEtfIzJG8SfXLWDZ3km3J1pKu6";
-				HttpURLConnection conn2 = (HttpURLConnection) new URL(htmlUrl2).openConnection();
-				conn2.setRequestMethod("GET");
+			
+			if(!myResponse.getJSONObject("timeline").isNull("next")) {
+			String next = myResponse.getJSONObject("timeline").getString("next");
+			System.out.println(next);
+			String htmlUrl2 = "https://api.neople.co.kr/df/servers/"+serverId+"/characters/"+characterId+"/timeline?next="+next+"&apikey=oMDk2YvEtfIzJG8SfXLWDZ3km3J1pKu6";
+			HttpURLConnection conn2 = (HttpURLConnection) new URL(htmlUrl2).openConnection();
+			conn2.setRequestMethod("GET");
 				
 				BufferedReader in2 = new BufferedReader(new InputStreamReader(conn2.getInputStream()));
 				String inputLine2;
 				StringBuffer response2 = new StringBuffer();
-				while((inputLine2= in.readLine()) != null){
+				while((inputLine2= in2.readLine()) != null){
 					response2.append(inputLine2);
 				}
 				in2.close();
 				JSONObject myResponse2 = new JSONObject(response2.toString());
 				JSONArray test2 = myResponse2.getJSONObject("timeline").getJSONArray("rows");
 				tl55 = test2.length();
+				System.out.println(tl55);
+				conn2.disconnect();
+				
+				if(!myResponse2.getJSONObject("timeline").isNull("next")) {
+					String next2 = myResponse2.getJSONObject("timeline").getString("next");
+					System.out.println(next2);
+					String htmlUrl3 = "https://api.neople.co.kr/df/servers/"+serverId+"/characters/"+characterId+"/timeline?next="+next+"&apikey=oMDk2YvEtfIzJG8SfXLWDZ3km3J1pKu6";
+					HttpURLConnection conn3 = (HttpURLConnection) new URL(htmlUrl2).openConnection();
+					conn3.setRequestMethod("GET");
+						
+						BufferedReader in3 = new BufferedReader(new InputStreamReader(conn3.getInputStream()));
+						String inputLine3;
+						StringBuffer response3 = new StringBuffer();
+						while((inputLine3= in3.readLine()) != null){
+							response3.append(inputLine3);
+						}
+						in3.close();
+						JSONObject myResponse3 = new JSONObject(response3.toString());
+						JSONArray test3 = myResponse3.getJSONObject("timeline").getJSONArray("rows");
+						tl555 = test3.length();
+						System.out.println(tl555);
+						conn3.disconnect();
+					}
 			}
-			String parseitemName2 = test.getJSONObject(0).getString("name");
-			tl5 = test.length()+ tl55;
+			tl5 = test.length()+ tl55 + tl555;
+			conn.disconnect();
+			
+			
 		} catch (Exception e) {
 			
 		}
