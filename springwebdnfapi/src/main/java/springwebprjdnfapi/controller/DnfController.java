@@ -82,8 +82,8 @@ public class DnfController {
 	Test test20 = ctx.getBean(Test.class);
 	MemberRegistRequest mrr = ctx.getBean(MemberRegistRequest.class);
 	
-	DBDTO dbdto = ctx.getBean(DBDTO.class);
-	//DBDTO dbdto = new DBDTO();
+	//DBDTO dbdto = ctx.getBean(DBDTO.class);
+	//DBDTO dbdto = new DBDTO(dataSource);
 	Connection conn = null;
 	PreparedStatement pstmt = null;
 	ResultSet rs = null;
@@ -140,47 +140,7 @@ public class DnfController {
 	
 	@RequestMapping("dnfdibol")
 	public String dnfdibol(HttpServletRequest request, Model model) {
-		
-		int yangsum = 0;
-		int songsum = 0;
-		int zozisum = 0;
-		int sungsum = 0;
-		int ansum = 0;
-		int chasum = 0;
-		for(int i =0; i<10; i++) {
-			yangsum += dbdto.yangtimeline[i];
-			songsum += dbdto.songtimeline[i];
-			zozisum += dbdto.zozitimeline[i];
-			sungsum += dbdto.sungtimeline[i];
-			ansum += dbdto.antimeline[i];
-			chasum += dbdto.chatimeline[i];
-		}
-		model.addAttribute("nowtime", now_dt);
-		model.addAttribute("yangid", dbdto.yangid);
-		model.addAttribute("yangtl",dbdto.yangtimeline);
-		model.addAttribute("yangsin",dbdto.yangsin);
-		
-		
-		model.addAttribute("songid", dbdto.songid);
-		model.addAttribute("songtl",dbdto.songtimeline);
-		model.addAttribute("songsin",dbdto.songsin);
-		
-		model.addAttribute("zoziid", dbdto.zoziid);
-		model.addAttribute("zozitl",dbdto.zozitimeline);
-		model.addAttribute("zozisin",dbdto.zozisin);
-		
-		model.addAttribute("sungid", dbdto.sungid);
-		model.addAttribute("sungtl",dbdto.sungtimeline);
-		model.addAttribute("sungsin",dbdto.sungsin);
-		
-		model.addAttribute("anid", dbdto.anid);
-		model.addAttribute("antl",dbdto.antimeline);
-		model.addAttribute("ansin",dbdto.ansin);
-		
-		model.addAttribute("chaid", dbdto.chaid);
-		model.addAttribute("chatl",dbdto.chatimeline);
-		model.addAttribute("chasin",dbdto.chasin);
-		
+
 		return "dnfdibol";
 	}
 	
@@ -189,8 +149,10 @@ public class DnfController {
 
 		model.addAttribute("server",request.getParameter("server"));
 		model.addAttribute("id",request.getParameter("id"));
+		model.addAttribute("cid",api.searchcharacterId(request.getParameter("server"), request.getParameter("id")));
 		model.addAttribute("timelinedesc", api.searchTimelinedesc(request.getParameter("server"), api.searchcharacterId(request.getParameter("server"), request.getParameter("id"))));
-		
+		model.addAttribute("timelinecount",api.tlall(request.getParameter("server"), api.searchcharacterId(request.getParameter("server"), request.getParameter("id"))));
+		model.addAttribute("timelinecount3",api.searchTimeline3(request.getParameter("server"), api.searchcharacterId(request.getParameter("server"), request.getParameter("id"))));
 		return "dnftest3";
 	}
 
@@ -206,150 +168,13 @@ public class DnfController {
 	@RequestMapping("cinsert")
 	public String cinsert(HttpServletRequest request, Model model) {
 
-		model.addAttribute("cid",request.getParameter("cid"));
-		model.addAttribute("id",request.getParameter("id"));
-		
-		if(request.getParameter("cid").equals("yang")) {
-			for(int i =0; i<dbdto.yangid.length; i++) {
-				if(dbdto.yangid[i] == null) {
-					dbdto.yangid[i] = api.searchname("prey", request.getParameter("id"));
-					dbdto.yangtimeline[i] = api.searchTimeline("prey", api.searchcharacterId("prey", request.getParameter("id")));
-					dbdto.yangsin[i] = api.searchsin("prey", api.searchcharacterId("prey", request.getParameter("id")));
-					break;
-				}
-			}
-		} else if(request.getParameter("cid").equals("song")) {
-			for(int i =0; i<dbdto.songid.length; i++) {
-				if(dbdto.songid[i] == null) {
-					dbdto.songid[i] = api.searchname("prey", request.getParameter("id"));
-					dbdto.songtimeline[i] = api.searchTimeline("prey", api.searchcharacterId("prey", request.getParameter("id")));
-					dbdto.songsin[i] = api.searchsin("prey", api.searchcharacterId("prey", request.getParameter("id")));
-					break;
-				}
-			}
-		} else if(request.getParameter("cid").equals("zozi")) {
-			for(int i =0; i<dbdto.zoziid.length; i++) {
-				if(dbdto.zoziid[i] == null) {
-					dbdto.zoziid[i] = api.searchname("prey", request.getParameter("id"));
-					dbdto.zozitimeline[i] = api.searchTimeline("prey", api.searchcharacterId("prey", request.getParameter("id")));
-					dbdto.zozisin[i] = api.searchsin("prey", api.searchcharacterId("prey", request.getParameter("id")));
-					break;
-				}
-			}
-		} else if(request.getParameter("cid").equals("sung")) {
-			for(int i =0; i<dbdto.sungid.length; i++) {
-				if(dbdto.sungid[i] == null) {
-					dbdto.sungid[i] = api.searchname("prey", request.getParameter("id"));
-					dbdto.sungtimeline[i] = api.searchTimeline("prey", api.searchcharacterId("prey", request.getParameter("id")));
-					dbdto.sungsin[i] = api.searchsin("prey", api.searchcharacterId("prey", request.getParameter("id")));
-					break;
-				}
-			}
-		} else if(request.getParameter("cid").equals("an")) {
-			for(int i =0; i<dbdto.anid.length; i++) {
-				if(dbdto.anid[i] == null) {
-					dbdto.anid[i] = api.searchname("prey", request.getParameter("id"));
-					dbdto.antimeline[i] = api.searchTimeline("prey", api.searchcharacterId("prey", request.getParameter("id")));
-					dbdto.ansin[i] = api.searchsin("prey", api.searchcharacterId("prey", request.getParameter("id")));
-					break;
-				}
-			}
-		} else if(request.getParameter("cid").equals("cha")) {
-			for(int i =0; i<dbdto.chaid.length; i++) {
-				if(dbdto.chaid[i] == null) {
-					dbdto.chaid[i] = api.searchname("prey", request.getParameter("id"));
-					dbdto.chatimeline[i] = api.searchTimeline("prey", api.searchcharacterId("prey", request.getParameter("id")));
-					dbdto.chasin[i] = api.searchsin("prey", api.searchcharacterId("prey", request.getParameter("id")));
-					break;
-				}
-			}
-		} 
-		
 		return "redirect:/dnf/dnfdibol";
 	}
 	
 	@RequestMapping("cdelete")
 	public String cdelete(HttpServletRequest request, Model model) {
 		delete(request.getParameter("cid"));
-//		if(request.getParameter("cid").equals("yang")) {
-//			for(int i=0; i<=10; i++) {
-//			if(dbdto.yangid[i].equals(request.getParameter("id"))) {
-//				dbdto.yangid[i] = null;
-//				dbdto.yangtimeline[i] = 0;
-//				dbdto.yangsin[i] = 0;
-//				break;
-//				}
-//				dbdto.yangid[i] = dbdto.yangid[i+1];
-//				dbdto.yangtimeline[i] = dbdto.yangtimeline[i+1];
-//				dbdto.yangsin[i] = dbdto.yangsin[i+1];
-//			}
-//			}
-//		else if(request.getParameter("cid").equals("song")) {
-//			for(int i=0; i<=10; i++) {
-//			if(dbdto.songid[i].equals(request.getParameter("id"))) {
-//				dbdto.songid[i] = null;
-//				dbdto.songtimeline[i] = 0;
-//				dbdto.songsin[i] = 0;
-//				break;
-//				}
-//				dbdto.songid[i] = dbdto.songid[i+1];
-//				dbdto.songtimeline[i] = dbdto.songtimeline[i+1];
-//				dbdto.songsin[i] = dbdto.songsin[i+1];
-//			}
-//			}
-//		else if(request.getParameter("cid").equals("zozi")) {
-//			for(int i=0; i<=10; i++) {
-//			if(dbdto.zoziid[i].equals(request.getParameter("id"))) {
-//				dbdto.zoziid[i] = null;
-//				dbdto.zozitimeline[i] = 0;
-//				dbdto.zozisin[i] = 0;
-//				break;
-//				}
-//				dbdto.zoziid[i] = dbdto.zoziid[i+1];
-//				dbdto.zozitimeline[i] = dbdto.zozitimeline[i+1];
-//				dbdto.zozisin[i] = dbdto.zozisin[i+1];
-//			}
-//			}
-//		else if(request.getParameter("cid").equals("sung")) {
-//			for(int i=0; i<=10; i++) {
-//			if(dbdto.sungid[i].equals(request.getParameter("id"))) {
-//				dbdto.sungid[i] = null;
-//				dbdto.sungtimeline[i] = 0;
-//				dbdto.sungsin[i] = 0;
-//				break;
-//				}
-//				dbdto.sungid[i] = dbdto.sungid[i+1];
-//				dbdto.sungtimeline[i] = dbdto.sungtimeline[i+1];
-//				dbdto.sungsin[i] = dbdto.sungsin[i+1];
-//			}
-//			}
-//		else if(request.getParameter("cid").equals("an")) {
-//			for(int i=0; i<=10; i++) {
-//			if(dbdto.anid[i].equals(request.getParameter("id"))) {
-//				dbdto.anid[i] = null;
-//				dbdto.antimeline[i] = 0;
-//				dbdto.ansin[i] = 0;
-//				break;
-//				}
-//				dbdto.anid[i] = dbdto.anid[i+1];
-//				dbdto.antimeline[i] = dbdto.antimeline[i+1];
-//				dbdto.ansin[i] = dbdto.ansin[i+1];
-//			}
-//			}
-//		else if(request.getParameter("cid").equals("cha")) {
-//			for(int i=0; i<=10; i++) {
-//			if(dbdto.chaid[i].equals(request.getParameter("id"))) {
-//				dbdto.chaid[i] = null;
-//				dbdto.chatimeline[i] = 0;
-//				dbdto.chasin[i] = 0;
-//				break;
-//				}
-//				dbdto.chaid[i] = dbdto.chaid[i+1];
-//				dbdto.chatimeline[i] = dbdto.chatimeline[i+1];
-//				dbdto.chasin[i] = dbdto.chasin[i+1];
-//			}
-//			}
-		
+
 		return "redirect:/dnf/dnfrank";
 		}
 		

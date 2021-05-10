@@ -58,7 +58,7 @@
 							<th scope="col">캐릭터명</th>
 							<th scope="col">먹은 에픽 수</th>
 							<th scope="col">먹은 신화 수</th>
-							<th scope="col">모험단</th>
+							<th scope="col"><a href="/springwebprjdnfapi/db/anselect">모험단</a></th>
 							<th scope="col">#</th>
 						</tr>
 					</thead>
@@ -117,6 +117,16 @@
 								</c:when>
 								<c:when test="${test.an == '애기븝구리단'}">
 								<tr bgcolor="#FE2EF7" align=center>
+									<th scope="row">${status.count}</th>
+									<td><b>${test.cid}</b></td>
+									<td><b>${test.ecount}</b></td>
+									<td><b>${test.scount}</b></td>
+									<td><b>${test.an}</b></td>
+									<td><a href="/springwebprjdnfapi/dnf/cdelete?cid=${test.cid}">삭제</a></td>
+								</tr>
+								</c:when>
+								<c:when test="${test.an == '리얼루다가이쁘지' }">
+								<tr bgcolor="#FA58AC" align=center>
 									<th scope="row">${status.count}</th>
 									<td><b>${test.cid}</b></td>
 									<td><b>${test.ecount}</b></td>
