@@ -66,27 +66,24 @@
 	<p>오늘날기준으로 한달전으로 타임라인이 나옵니다.</p>
 	</div>
 
-	<div style="margin:0 auto; width:100%;">
-		<div style="float: left; width:400px; height:460px;">
+	<div style="width:auto; height:auto; border : 1px solid red; float:left;">
+		<div style="float: left; width:auto; height:auto;">
 			<img
-				src="https://img-api.neople.co.kr/df/servers/${server}/characters/${cid}?zoom=2" />
+				src="https://img-api.neople.co.kr/df/servers/${server}/characters/${cid}?zoom=1" />
 		</div>
-		<div style="float: left; width:400px; height:460px;">
+		<div style="float: left; width:auto; height:auto;">
 			<h3>캐릭터 이름 : ${id}</h3>
 			<span>서버 : ${server}</span>
 			<h3>에픽먹은 개수 : ${timelinecount}</h3>
 			<h3>총먹은 신화 개수: ${sincount}</h3>
-			<h3>에픽먹은 갯수 : ${timelinecount3}</h3>
-			<h3>에픽먹은 갯수 : ${timelinecount4}</h3>
-			<h3>에픽먹은 갯수 : ${timelinecount5}</h3>
 		</div>
 	</div>
 
-	<div style="margin:0 auto; width:auto; overflow:hidden">
+	<div style="margin:0 auto; width:auto; overflow:hidden; float:left;">
  	<div class="container" style="width:400px; float:left;">
-		<h3>던전드랍
+		<p>던전드랍
 		<span>최근 30일 (최대 20개)</span>
-		</h3>
+		</p>
 			<div style="height:auto; border:1px solid lightgray; overflow:hidden">
 				<div>날짜</div>
 					<c:forEach var="test" items="${timelinedesc}" varStatus="status">
@@ -111,9 +108,9 @@
 	</div> 
 	
 	<div class="container" style="width: auto; width:auto; float:left;">
-		<h3>헬
+		<p>헬
 		<span>최근 30일 (최대 20개)</span>
-		</h3>
+		</p>
 			<div style="width:610px; height:auto; border:1px solid lightgray; overflow:hidden">
 				<div>날짜</div>
 					<c:forEach var="test" items="${timelinedesc}" varStatus="status">

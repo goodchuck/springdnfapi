@@ -162,7 +162,7 @@ public class Api {
 			
 			JSONArray test = myResponse.getJSONObject("timeline").getJSONArray("rows");
 
-			for (int i = 0; i<20; i++ ) {
+			for (int i = 0; i<10; i++ ) {
 				if(test.getJSONObject(i).getString("name").equals("아이템 획득(지옥 파티)")) {
 					name = test.getJSONObject(i).getString("name");
 					date = test.getJSONObject(i).getString("date");
@@ -338,6 +338,7 @@ public class Api {
 	
 		return an;
 	}
+
 	public int[] searchTimeline2(String reserverId, String recharacterId) {
 		int tl2 = 0;
 		int tl22 = 0;
