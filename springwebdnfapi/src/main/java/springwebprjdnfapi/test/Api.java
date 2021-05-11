@@ -84,6 +84,7 @@ public class Api {
 			String serverId = reserverId;
 			String characterId = recharacterId;
 			String htmlUrl = "https://api.neople.co.kr/df/servers/"+serverId+"/characters/"+characterId+"/equip/equipment?apikey=oMDk2YvEtfIzJG8SfXLWDZ3km3J1pKu6";
+			
 			HttpURLConnection conn = (HttpURLConnection) new URL(htmlUrl).openConnection();
 			conn.setRequestMethod("GET");
 			
@@ -187,7 +188,7 @@ public class Api {
 	}
 	
 	
-	public int searchTimeline(String reserverId, String recharacterId) {
+	public int searchTimeline(String reserverId, String recharacterId) { //오늘날 기준 30일전까지 불러오는 함수
 		int tl = 0;
 
 		try {
@@ -231,7 +232,7 @@ public class Api {
 		return tl;
 	}
 	
-	public int searchsin(String reserverId, String recharacterId) {
+	public int searchsin(String reserverId, String recharacterId) { //신화 가져옴
 		int ts = 0;
 		try {
 			String serverId = reserverId;
@@ -337,10 +338,12 @@ public class Api {
 	
 		return an;
 	}
-	public int searchTimeline2(String reserverId, String recharacterId) {
+	public int[] searchTimeline2(String reserverId, String recharacterId) {
 		int tl2 = 0;
 		int tl22 = 0;
 		int tl222 = 0;
+		int ts = 0;
+
 		try {
 			String serverId = reserverId;
 			String characterId = recharacterId;
@@ -362,6 +365,15 @@ public class Api {
 			
 			JSONArray test = myResponse.getJSONObject("timeline").getJSONArray("rows");
 			
+			for(int i=0; i<test.length(); i++) {
+			String parseitemName2 = test.getJSONObject(i).getJSONObject("data").getString("itemRarity");
+			if(parseitemName2.equals("신화")) {
+			
+			ts++;
+			System.out.println(parseitemName2);
+			}
+			}
+			
 			if(!myResponse.getJSONObject("timeline").isNull("next")) {
 			String next = myResponse.getJSONObject("timeline").getString("next");
 			System.out.println(next);
@@ -378,6 +390,16 @@ public class Api {
 				in2.close();
 				JSONObject myResponse2 = new JSONObject(response2.toString());
 				JSONArray test2 = myResponse2.getJSONObject("timeline").getJSONArray("rows");
+				
+				for(int i=0; i<test2.length(); i++) {
+					String parseitemName2 = test2.getJSONObject(i).getJSONObject("data").getString("itemRarity");
+					if(parseitemName2.equals("신화")) {
+					
+					ts++;
+					System.out.println(parseitemName2);
+					}
+					}
+				
 				tl22 = test2.length();
 				System.out.println(tl22);
 				conn2.disconnect();
@@ -398,6 +420,15 @@ public class Api {
 						in3.close();
 						JSONObject myResponse3 = new JSONObject(response3.toString());
 						JSONArray test3 = myResponse3.getJSONObject("timeline").getJSONArray("rows");
+						
+						for(int i=0; i<test3.length(); i++) {
+							String parseitemName2 = test3.getJSONObject(i).getJSONObject("data").getString("itemRarity");
+							if(parseitemName2.equals("신화")) {
+							
+							ts++;
+							System.out.println(parseitemName2);
+							}
+							}
 						tl222 = test3.length();
 						System.out.println(tl22);
 						conn3.disconnect();
@@ -411,15 +442,16 @@ public class Api {
 			
 		}
 		
-
-		return tl2;
+		int[] arr = {tl2, ts};
+		return arr;
 	}
 	
-	public int searchTimeline3(String reserverId, String recharacterId) {
+	public int[] searchTimeline3(String reserverId, String recharacterId) {
 
 		int tl3 = 0;
 		int tl33 = 0;
 		int tl333 = 0;
+		int ts = 0;
 		try {
 			String serverId = reserverId;
 			String characterId = recharacterId;
@@ -439,6 +471,15 @@ public class Api {
 			
 			JSONArray test = myResponse.getJSONObject("timeline").getJSONArray("rows");
 			
+			for(int i=0; i<test.length(); i++) {
+				String parseitemName2 = test.getJSONObject(i).getJSONObject("data").getString("itemRarity");
+				if(parseitemName2.equals("신화")) {
+				
+				ts++;
+				System.out.println(parseitemName2);
+				}
+				}
+			
 			if(!myResponse.getJSONObject("timeline").isNull("next")) {
 			String next = myResponse.getJSONObject("timeline").getString("next");
 			System.out.println(next);
@@ -455,6 +496,16 @@ public class Api {
 				in2.close();
 				JSONObject myResponse2 = new JSONObject(response2.toString());
 				JSONArray test2 = myResponse2.getJSONObject("timeline").getJSONArray("rows");
+				
+				for(int i=0; i<test2.length(); i++) {
+					String parseitemName2 = test2.getJSONObject(i).getJSONObject("data").getString("itemRarity");
+					if(parseitemName2.equals("신화")) {
+					
+					ts++;
+					System.out.println(parseitemName2);
+					}
+					}
+				
 				tl33 = test2.length();
 				System.out.println(tl33);
 				conn2.disconnect();
@@ -475,6 +526,15 @@ public class Api {
 						in3.close();
 						JSONObject myResponse3 = new JSONObject(response3.toString());
 						JSONArray test3 = myResponse3.getJSONObject("timeline").getJSONArray("rows");
+						
+						for(int i=0; i<test3.length(); i++) {
+							String parseitemName2 = test3.getJSONObject(i).getJSONObject("data").getString("itemRarity");
+							if(parseitemName2.equals("신화")) {
+							
+							ts++;
+							System.out.println(parseitemName2);
+							}
+							}
 						tl333 = test3.length();
 						System.out.println(tl333);
 						conn3.disconnect();
@@ -486,15 +546,17 @@ public class Api {
 			
 		}
 		
-		return tl3;
+		int[] arr = {tl3, ts};
+		return arr;
 	}
 	
-	public int searchTimeline4(String reserverId, String recharacterId) {
+	public int[] searchTimeline4(String reserverId, String recharacterId) {
 
 		int tl4 = 0;
 		int tl44 = 0;
 		int tl444 = 0;
-		int tl4444 = 0;
+		int ts = 0;
+		int arr[] = new int[2];
 		try {
 			String serverId = reserverId;
 			String characterId = recharacterId;
@@ -514,6 +576,15 @@ public class Api {
 			
 			JSONArray test = myResponse.getJSONObject("timeline").getJSONArray("rows");
 			
+			for(int i=0; i<test.length(); i++) {
+				String parseitemName2 = test.getJSONObject(i).getJSONObject("data").getString("itemRarity");
+				if(parseitemName2.equals("신화")) {
+				
+				ts++;
+				System.out.println(parseitemName2);
+				}
+				}
+			
 			if(!myResponse.getJSONObject("timeline").isNull("next")) {
 			String next = myResponse.getJSONObject("timeline").getString("next");
 			System.out.println(next);
@@ -530,6 +601,17 @@ public class Api {
 				in2.close();
 				JSONObject myResponse2 = new JSONObject(response2.toString());
 				JSONArray test2 = myResponse2.getJSONObject("timeline").getJSONArray("rows");
+				
+				for(int i=0; i<test2.length(); i++) {
+					String parseitemName2 = test2.getJSONObject(i).getJSONObject("data").getString("itemRarity");
+					
+					if(parseitemName2.equals("신화")) {
+					
+					ts++;
+					System.out.println(parseitemName2);
+					}
+					}
+				
 				tl44 = test2.length();
 				System.out.println(tl44);
 				conn2.disconnect();
@@ -550,6 +632,16 @@ public class Api {
 						in3.close();
 						JSONObject myResponse3 = new JSONObject(response3.toString());
 						JSONArray test3 = myResponse3.getJSONObject("timeline").getJSONArray("rows");
+						
+						for(int i=0; i<test3.length(); i++) {
+							String parseitemName2 = test3.getJSONObject(i).getJSONObject("data").getString("itemRarity");
+							if(parseitemName2.equals("신화")) {
+							
+							ts++;
+							System.out.println(parseitemName2);
+							}
+							}
+						
 						tl444 = test3.length();
 						System.out.println(tl444);
 						conn3.disconnect();
@@ -558,21 +650,19 @@ public class Api {
 			}
 			tl4 = test.length()+ tl44 + tl444;
 			conn.disconnect();
+			arr[0] = tl4;
+			arr[1] = ts;
 		} catch (Exception e) {
 			
 		}
-		try {
-			
-		} catch (Exception e) {
-			
-		}
-		return tl4;
+		return arr;
 	}
 	
-	public int searchTimeline5(String reserverId, String recharacterId) {
+	public int[] searchTimeline5(String reserverId, String recharacterId) {
 		int tl5 = 0;
 		int tl55 = 0;
 		int tl555 = 0;
+		int ts = 0;
 		try {
 			String serverId = reserverId;
 			String characterId = recharacterId;
@@ -592,6 +682,15 @@ public class Api {
 			
 			JSONArray test = myResponse.getJSONObject("timeline").getJSONArray("rows");
 			
+			for(int i=0; i<test.length(); i++) {
+				String parseitemName2 = test.getJSONObject(i).getJSONObject("data").getString("itemRarity");
+				if(parseitemName2.equals("신화")) {
+				
+				ts++;
+				System.out.println(parseitemName2);
+				}
+				}
+			
 			if(!myResponse.getJSONObject("timeline").isNull("next")) {
 			String next = myResponse.getJSONObject("timeline").getString("next");
 			System.out.println(next);
@@ -608,6 +707,16 @@ public class Api {
 				in2.close();
 				JSONObject myResponse2 = new JSONObject(response2.toString());
 				JSONArray test2 = myResponse2.getJSONObject("timeline").getJSONArray("rows");
+				
+				for(int i=0; i<test2.length(); i++) {
+					String parseitemName2 = test2.getJSONObject(i).getJSONObject("data").getString("itemRarity");
+					if(parseitemName2.equals("신화")) {
+					
+					ts++;
+					System.out.println(parseitemName2);
+					}
+					}
+				
 				tl55 = test2.length();
 				System.out.println(tl55);
 				conn2.disconnect();
@@ -628,6 +737,16 @@ public class Api {
 						in3.close();
 						JSONObject myResponse3 = new JSONObject(response3.toString());
 						JSONArray test3 = myResponse3.getJSONObject("timeline").getJSONArray("rows");
+						
+						for(int i=0; i<test3.length(); i++) {
+							String parseitemName2 = test3.getJSONObject(i).getJSONObject("data").getString("itemRarity");
+							if(parseitemName2.equals("신화")) {
+							
+							ts++;
+							System.out.println(parseitemName2);
+							}
+							}
+						
 						tl555 = test3.length();
 						System.out.println(tl555);
 						conn3.disconnect();
@@ -640,18 +759,52 @@ public class Api {
 		} catch (Exception e) {
 			
 		}
-		
-		return tl5;
+		int[] arr = {tl5, ts};
+		return arr;
 	}
 	
 	public int tlall(String reserverId, String recharacterId) {
 		int tlall = 
-		searchTimeline2(reserverId,recharacterId)
-		+searchTimeline3(reserverId,recharacterId)
-		+searchTimeline4(reserverId,recharacterId)
-		+searchTimeline5(reserverId,recharacterId);
+		searchTimeline2(reserverId,recharacterId)[0]
+		+searchTimeline3(reserverId,recharacterId)[0]
+		+searchTimeline4(reserverId,recharacterId)[0]
+		+searchTimeline5(reserverId,recharacterId)[0];
 		return tlall;
 	}
+	
+	public int tlsinall(String reserverId, String recharacterId) {
+		int tlsinall = 
+		searchTimeline2(reserverId,recharacterId)[1]
+		+searchTimeline3(reserverId,recharacterId)[1]
+		+searchTimeline4(reserverId,recharacterId)[1]
+		+searchTimeline5(reserverId,recharacterId)[1];
+		return tlsinall;
+	}
+//	public int tlsinall(String reserverId, String recharacterId) {
+//		int[] arr = {searchTimeline2(reserverId,recharacterId)[1],searchTimeline3(reserverId,recharacterId)[1],searchTimeline4(reserverId,recharacterId)[1],
+//				searchTimeline5(reserverId,recharacterId)[1]};
+//		int[] arr2= {searchTimeline2(reserverId,recharacterId)[0],searchTimeline3(reserverId,recharacterId)[0],searchTimeline4(reserverId,recharacterId)[0],
+//				searchTimeline5(reserverId,recharacterId)[0]};
+////		int tlsinall = 
+////		searchTimeline2(reserverId,recharacterId)[1]
+////		+searchTimeline3(reserverId,recharacterId)[1]
+////		+searchTimeline4(reserverId,recharacterId)[1]
+////		+searchTimeline5(reserverId,recharacterId)[1];
+//		int tlsinall = 0;
+//		if(arr[0] !=0) {
+//			tlsinall = arr[0];
+//		}
+//		else if(arr[0] == 0 && arr[1] != 0) {
+//			tlsinall =  arr2[0]+ arr[1];
+//		} 
+//		else if(arr[0] == 0 && arr[1] == 0 && arr[2] !=0) {
+//			tlsinall = arr2[0]+ arr2[1] + arr[2];
+//		} 
+//		else if(arr[0] == 0 && arr[1] == 0 && arr[2] ==0 && arr[3] !=0) {
+//			tlsinall = arr2[0] + arr2[1] + arr2[2] + arr[3];
+//		}
+//		return tlsinall;
+//	}
 	
 
 }

@@ -74,10 +74,11 @@
 		<div style="float: left; width:400px; height:460px;">
 			<h3>캐릭터 이름 : ${id}</h3>
 			<span>서버 : ${server}</span>
-			<h3>캐릭터 id : ${cid}</h3>
-			<h3>에픽먹은 갯수 : ${timelinecount}</h3>
+			<h3>에픽먹은 개수 : ${timelinecount}</h3>
+			<h3>총먹은 신화 개수: ${sincount}</h3>
 			<h3>에픽먹은 갯수 : ${timelinecount3}</h3>
 			<h3>에픽먹은 갯수 : ${timelinecount4}</h3>
+			<h3>에픽먹은 갯수 : ${timelinecount5}</h3>
 		</div>
 	</div>
 

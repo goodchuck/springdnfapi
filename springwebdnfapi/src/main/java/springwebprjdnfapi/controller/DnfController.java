@@ -147,13 +147,13 @@ public class DnfController {
 	@RequestMapping("dnftest3")
 	public String dnftest3(HttpServletRequest request, Model model) {
 
+		String cid = api.searchcharacterId(request.getParameter("server"), request.getParameter("id"));
 		model.addAttribute("server",request.getParameter("server"));
 		model.addAttribute("id",request.getParameter("id"));
-		model.addAttribute("cid",api.searchcharacterId(request.getParameter("server"), request.getParameter("id")));
-		model.addAttribute("timelinedesc", api.searchTimelinedesc(request.getParameter("server"), api.searchcharacterId(request.getParameter("server"), request.getParameter("id"))));
-		model.addAttribute("timelinecount",api.tlall(request.getParameter("server"), api.searchcharacterId(request.getParameter("server"), request.getParameter("id"))));
-		model.addAttribute("timelinecount3",api.searchTimeline3(request.getParameter("server"), api.searchcharacterId(request.getParameter("server"), request.getParameter("id"))));
-		model.addAttribute("timelinecount4",api.searchTimeline4(request.getParameter("server"), api.searchcharacterId(request.getParameter("server"), request.getParameter("id"))));
+		model.addAttribute("cid",cid);
+		model.addAttribute("timelinedesc", api.searchTimelinedesc(request.getParameter("server"), cid));
+		model.addAttribute("timelinecount",api.tlall(request.getParameter("server"), cid));
+		model.addAttribute("sincount",api.tlsinall(request.getParameter("server"), cid));
 		return "dnftest3";
 	}
 
