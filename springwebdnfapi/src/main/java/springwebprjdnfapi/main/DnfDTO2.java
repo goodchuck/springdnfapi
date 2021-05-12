@@ -5,10 +5,17 @@ public class DnfDTO2 {
 	private String name;
 	private String date;
 	private String itemName;
+	private String itemRarity;
 	private String channelName;
 	private int channelNo;
 	private String dungeonName;
 	
+	public String getItemRarity() {
+		return itemRarity;
+	}
+	public void setItemRarity(String itemRarity) {
+		this.itemRarity = itemRarity;
+	}
 	public int getChannelNo() {
 		return channelNo;
 	}
@@ -50,15 +57,18 @@ public class DnfDTO2 {
 	public DnfDTO2() {
 		
 	}
-	public DnfDTO2(String name, String date, String itemName, String channelName, int channelNo, String dungeonName) {
+	public DnfDTO2(String name, String date, String itemName, String itemRarity, String channelName, int channelNo,
+			String dungeonName) {
 		super();
 		this.name = name;
 		this.date = date;
 		this.itemName = itemName;
+		this.itemRarity = itemRarity;
 		this.channelName = channelName;
 		this.channelNo = channelNo;
 		this.dungeonName = dungeonName;
 	}
+
 
 
 	

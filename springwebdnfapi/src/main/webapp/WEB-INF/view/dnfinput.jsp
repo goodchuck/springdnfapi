@@ -50,7 +50,6 @@
 				<li class="nav-item"><a class="nav-link" href="/springwebprjdnfapi/index">메인
 						<span class="sr-only">(current)</span>
 				</a></li>
-				<li class="nav-item"><a class="nav-link" href="Ytbbs.jsp">게시판</a></li>
 				<li class="nav-item"><a class="nav-link" href="/springwebprjdnfapi/versionnote">버전 노트</a></li>
 				<li class="nav-item"><a class="nav-link" href="/springwebprjdnfapi/gallery">갤러리</a></li>
 				<li class="nav-item"><a class="nav-link" href="/springwebprjdnfapi/dnf/dnfrank">기린랭킹</a></li>
@@ -58,11 +57,11 @@
 		</div>
 	</nav>
 
-	<div>
+	<div class="mid">
   		<h1>양티의 연습 던파 사이트!</h1>
 	</div>
 
-	<div>
+	<div class="mid">
  	<form method="get" action="/springwebprjdnfapi/dnf/dnftest3" class="form-inline mt-3">
  		<select name="server" class="form-control mx-1 mt-2">
 				<option value="anton">안톤</option>
@@ -80,12 +79,30 @@
 	</div>
 	
 	<p> </p>
-	<div>
-		<img src="resources/images/3구슬.jpg" />
+	<div class="mid">
+		<img src="resources/images/신화구슬정지.PNG" />
+		<img src="resources/images/스펀저.gif" />
 	</div>
 	
-	<div>
-		<h1><a href="/springwebprjdnfapi/dnf/dnfdibol">우리 캐릭터들 기린력 확인</a></h1>
+	<div class="mid">
+		<div>
+			<table class="table">
+				<thead class="thead-light">
+					<tr class="text-center">
+						<th scope="col">공지사항</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>21/05/12 네오플API를 이용한 사이트로써 개인 포트폴리오용 사이트입니다.</td>
+					</tr>
+				</tbody>
+			</table>	
+		</div>
+	</div>
+	
+	<div class="mid">
+		<!-- <h1><a href="/springwebprjdnfapi/dnf/dnfdibol">우리 캐릭터들 기린력 확인</a></h1> -->
 		
 		<a href="http://developers.neople.co.kr" target="_blank">
 		<img src="resources/images/공식표기_color.png" alt="Neople 오픈 API" /> </a>

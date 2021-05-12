@@ -44,6 +44,7 @@ import springwebprjdnfapi.main.DBDTO;
 import springwebprjdnfapi.main.DnfDTO;
 import springwebprjdnfapi.main.Epiccount;
 import springwebprjdnfapi.main.MemberRegistRequest;
+import springwebprjdnfapi.main.TDTO;
 import springwebprjdnfapi.main.Test;
 import springwebprjdnfapi.test.Api;
 
@@ -146,14 +147,35 @@ public class DnfController {
 	
 	@RequestMapping("dnftest3")
 	public String dnftest3(HttpServletRequest request, Model model) {
-
-		String cid = api.searchcharacterId(request.getParameter("server"), request.getParameter("id"));
+		String server = request.getParameter("server");
+		String cid = api.searchcharacterId(server, request.getParameter("id"));
+		ArrayList<TDTO> tl2020 = api.searchTimeline2020(server, cid);
+		ArrayList<TDTO> tl2021 = api.searchTimeline2021(server, cid);
+		
+		ArrayList<String> ts2020 = tl2020.get(0).getSinarray();
+		ArrayList<String> ts2021 = tl2021.get(0).getSinarray();
+		String[] ts2020all = new String[20];
+		String[] ts2021all = new String[20];
+		for(int i=0; i<ts2020.size(); i++) {
+			System.out.println("검색1" + ts2020.get(i));
+			ts2020all[i] = api.searchItemId(ts2020.get(i));
+		}
+		for(int i=0; i<ts2021.size(); i++) {
+			System.out.println("검색2" + ts2021.get(i));
+			ts2021all[i] = api.searchItemId(ts2021.get(i));
+		}
+		model.addAttribute("sin2020",ts2020all);
+		model.addAttribute("sin2021",ts2021all);
+		
 		model.addAttribute("server",request.getParameter("server"));
 		model.addAttribute("id",request.getParameter("id"));
 		model.addAttribute("cid",cid);
-		model.addAttribute("timelinedesc", api.searchTimelinedesc(request.getParameter("server"), cid));
-		model.addAttribute("timelinecount",api.tlall(request.getParameter("server"), cid));
-		model.addAttribute("sincount",api.tlsinall(request.getParameter("server"), cid));
+		model.addAttribute("timelinedesc", api.searchTimelinedesc(server, cid));
+		//model.addAttribute("timelinecount",api.tlall(server, cid));
+		//model.addAttribute("sincount",api.tlsinall(server, cid));
+		model.addAttribute("searchItem",api.searchItem(server, cid));
+		model.addAttribute("testtest2", tl2020.get(0).getTlall2() +tl2021.get(0).getTlall2());
+		model.addAttribute("testtest3", tl2020.get(0).getTsall() +tl2021.get(0).getTsall());
 		return "dnftest3";
 	}
 
