@@ -12,5 +12,7 @@
 ### 메인화면 - 웹에 들어올시 기본으로 보이는 화면이며 서버와 캐릭터이름을 입력시 다른 view로 넘어갑니다.
 ![dnfapi메인화면](https://user-images.githubusercontent.com/79144494/118081153-cc3f6c00-b3f5-11eb-801a-a8829951f057.PNG)
 ### 검색클릭시 - 올바른 서버와 캐릭터이름을 입력시 검색결과과 나오며 각종 API를 사용한결과를 분류해 클라이언트에게 보여줍니다.
+#### 검색예시1
 ![dnfapi검색결과](https://user-images.githubusercontent.com/79144494/118081324-16c0e880-b3f6-11eb-9c2e-f3e36eea6427.PNG)
-
+#### 검색예시2
+![dnfapi검색예시2](https://user-images.githubusercontent.com/79144494/118081775-fba2a880-b3f6-11eb-8496-686580e51f74.PNG)
