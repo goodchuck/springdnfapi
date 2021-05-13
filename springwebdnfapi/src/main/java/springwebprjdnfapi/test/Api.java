@@ -209,6 +209,14 @@ public class Api {
 					channelName = test.getJSONObject(i).getJSONObject("data").getString("channelName");
 					channelNo = test.getJSONObject(i).getJSONObject("data").getInt("channelNo");
 					dungeonName = test.getJSONObject(i).getJSONObject("data").getString("dungeonName");
+				} else if(test.getJSONObject(i).getString("name").equals("아이템 획득(항아리)")){
+					name = test.getJSONObject(i).getString("name");
+					date = test.getJSONObject(i).getString("date");
+					itemName = test.getJSONObject(i).getJSONObject("data").getString("itemName");
+					itemRarity = test.getJSONObject(i).getJSONObject("data").getString("itemRarity");
+					channelName = test.getJSONObject(i).getJSONObject("data").getString("channelName");
+					channelNo = test.getJSONObject(i).getJSONObject("data").getInt("channelNo");
+					dungeonName = "";
 				} else {
 					name = test.getJSONObject(i).getString("name");
 					date = test.getJSONObject(i).getString("date");

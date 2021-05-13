@@ -42,7 +42,14 @@ request.setCharacterEncoding("UTF-8");
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
+<style>
+	.img {
+		background-image:url('../resources/images/background.png');
+		background-repeat: no-repeat;
+		background-size : cover;
+	}
 
+</style>
 </head>
 <body>
 	<script
@@ -89,7 +96,7 @@ request.setCharacterEncoding("UTF-8");
 		<p>오늘날기준으로 한달전으로 타임라인이 나옵니다.</p>
 	</div>
 
-	<div
+	<div class="img"
 		style="width: auto; height: auto; border: 1px solid red; float: left;">
 		<div style="float: left; width: auto; height: auto;">
 			<img
@@ -109,18 +116,21 @@ request.setCharacterEncoding("UTF-8");
 			<p>먹은신화들</p>
 			<c:forEach var="test" items="${sin2020}" varStatus="status">
 			<c:if test="${not empty test}">
-				<img src="https://img-api.neople.co.kr/df/items/${test}" />
-				<!-- <div style="position:releative; top: 0px; left : 0px;">
-				<div style="position:absolute;"><img src="https://dunfamoa.com/ora_myth.png"/></div>
-				</div> -->
+			<div style="background:url(https://img-api.neople.co.kr/df/items/${test}); width:28px; height:28px; float:left;">
+				<div style="background:url(https://dunfamoa.com/ora_myth.png); width:28px; height:28px;" ></div>
+			</div>
+				
 			</c:if>
 			</c:forEach>
 			<c:forEach var="test" items="${sin2021}" varStatus="status">
 			<c:if test="${not empty test}">
-				<img src="https://img-api.neople.co.kr/df/items/${test}" />
+<%-- 				<img src="https://img-api.neople.co.kr/df/items/${test}" />
 				<!-- <div style="position:releative; top: 0px; left : 0px;">
 				<div style="position:absolute;"><img src="https://dunfamoa.com/ora_myth.png"/></div>
-				</div> -->
+				</div> --> --%>
+			<div style="background:url(https://img-api.neople.co.kr/df/items/${test}); width:28px; height:28px; float:left;">
+				<div style="background:url(https://dunfamoa.com/ora_myth.png); width:28px; height:28px;" ></div>
+			</div>
 			</c:if>
 			</c:forEach>
 
@@ -174,7 +184,7 @@ request.setCharacterEncoding("UTF-8");
 				<div>날짜</div>
 				<c:forEach var="test" items="${timelinedesc}" varStatus="status">
 					<c:choose>
-						<c:when test="${test.name == '아이템 획득(지옥 파티)' }">
+						<c:when test="${test.name == '아이템 획득(지옥 파티)' || test.name == '아이템 획득(항아리)' }">
 							<div style="width: auto; border: 1px solid lightgray;">
 								<div style="width: auto; height: 30px;">
 									<div style="color: rgb(17, 85, 153); float: left;">${test.name}
