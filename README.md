@@ -15,6 +15,18 @@ MySql
 # 개발인원 
 1명
 
+# 실행방법
+
+# 사용 예제
+
+# 개발 환경 설정 방법
+
+# 기여 방법
+
+# 변경 로그
+
+# 라이센스 및 작성자 정보
+
 ## 사용된 패키지와 클래스
 #### 패키지 : controller, main, test
 ![dnfapipackage](https://user-images.githubusercontent.com/79144494/118081069-9dc19100-b3f5-11eb-8ac6-ed1e2c1b65b7.PNG)
